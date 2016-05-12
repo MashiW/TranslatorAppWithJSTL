@@ -2,8 +2,8 @@
 
     <div class="panel panel-primary" style="border-color:#bfbfbf">
         <div class="panel-heading"
-             style="color:#ffffff; background-color:#ababab; border-color: #bfbfbf ; font-size: large;"><b>Search
-            User</b></div>
+             style="color:#ffffff; background-color:#ababab; border-color: #bfbfbf ; font-size: large;"><b><fmt:message
+                key="search.label.searchuser"></fmt:message></b></div>
 
         <div class="panel-body">
             <br>
@@ -11,13 +11,13 @@
             <div class="form-group required">
                 <label class="col-md-3 control-label" for="txtSrchun" align="right">User Name :</label>
 
-                        <div class="col-md-4">
-                            <input id="txtSrchun" name="txtSrchun" placeholder="enter user name"
-                                   class="form-control typeahead">
-                            <label id="sercherr" class="input-group-error form-error"></label>
-                        </div>
+                <div class="col-md-4">
+                    <input id="txtSrchun" name="txtSrchun" placeholder="enter user name"
+                           class="form-control typeahead">
+                    <label id="sercherr" class="input-group-error form-error"></label>
+                </div>
                 <div class="btn btn-default" id="btnSrchUser" value="Search">Search User</div>
-                    </div>
+            </div>
 
             <table id="table">
 

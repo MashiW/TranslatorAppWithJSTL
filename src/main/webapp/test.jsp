@@ -1,4 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@page import="java.util.ArrayList" %>
 <div>
     <form role="form" action="TranslateServlet" method="post">
@@ -18,17 +21,18 @@
                     out.println("</textarea>");*/
                 %>
                 <textarea name="txtFromText" id="fromText" class="form-control input-md">
-                  <c:if test="${ s1!= null}">
+                  <c:if test="${not empty s1}">
                       <c:out value="${s1}"/>
                   </c:if>
               </textarea>
                 <br>
-
+                <c:set var="number" value="${200}">
+                <c:out value="${number}"></c:out>
                 <div class="top-buffer">
                     <select name="frmType" class="form-control" style="width:150px;">
                         <%
-                            ArrayList<String> ar = new ArrayList<String>();
-                            ar = (ArrayList<String>) request.getAttribute("list");
+                            ArrayList<String> ar = (ArrayList<String>) request.getAttribute("list");
+
                             request.setAttribute("ar", ar);
 
                             /*for (int i = 0; i < ar.size(); i++) {
@@ -41,7 +45,8 @@
                         %>
                         <c:forEach items="${ar}" var="arraylang">
 
-                            <option value="${arraylang}" ${arraylang == ar ? 'selected="selected"': ''}> ${arraylang}</option>">
+                            <option value="${arraylang}"> ${arraylang}</option>
+                            ">
 
                         </c:forEach>
                     </select>
@@ -89,8 +94,11 @@
 
     <div class="row top-buffer">
         <div class="row">
-            <h5><b>Powered by Yandex.Translate: </b><a href="http://translate.yandex.com/">
-                http://translate.yandex.com/</a></h5>
+            <fmt:bundle basename="resources/jstl.messages">
+            <br/>
+
+            <h5><b><fmt:message key="yandex.url.label"/> </b><a href="http://translate.yandex.com/">
+                <fmt:message key="yandex.url.textlink"/></a></h5>
         </div>
     </div>
 </div>

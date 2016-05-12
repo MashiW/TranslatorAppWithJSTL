@@ -2,19 +2,20 @@
 
     <div class="panel panel-primary" style="border-color:#bfbfbf; width: 60%; margin-left: 20%;">
         <div class="panel-heading"
-             style="color:#ffffff; background-color:#ababab; border-color: #bfbfbf ; font-size: large;"><b>Add New
-            User</b></div>
+             style="color:#ffffff; background-color:#ababab; border-color: #bfbfbf ; font-size: large;"><b>
+            <fmt:message key="addform.label.addnewUser"></fmt:message> </b></div>
 
         <div class="panel-body">
 
             <form class="form-horizontal" id="frmUsrAdd" name="frmUsrAdd" method="post">
                 <fieldset>
 
-                    <legend><h5><i>Fill all the required fields *</i></h5></legend>
+                    <legend><h5><i><fmt:message key="addform.required.message"></fmt:message></i></h5></legend>
 
                     <!-- usrname input-->
                     <div class="form-group required">
-                        <label class="col-md-4 control-label" for="txtuname">User Name :</label>
+                        <label class="col-md-4 control-label" for="txtuname"><fmt:message
+                                key="addform.label.username"></fmt:message></label>
 
                         <div class="col-md-5">
                             <input id="txtuname" name="txtuname" placeholder="enter user name"
@@ -25,7 +26,8 @@
 
                     <!-- firstname input-->
                     <div class="form-group required">
-                        <label class="col-md-4 control-label" for="txtfname">First Name :</label>
+                        <label class="col-md-4 control-label" for="txtfname"><fmt:message
+                                key="addform.label.firstname"></fmt:message></label>
 
                         <div class="col-md-5">
                             <input id="txtfname" name="txtfname" placeholder="enter first name"
@@ -36,7 +38,8 @@
 
                     <!-- lastname input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="txtlstnm">Last Name :</label>
+                        <label class="col-md-4 control-label" for="txtlstnm"><fmt:message
+                                key="addform.label.lastname"></fmt:message></label>
 
                         <div class="col-md-5">
                             <input id="txtlstnm" name="txtlstnm" placeholder="enter last name"
@@ -64,7 +67,7 @@
 
                         <div class="bootstrap-iso form-group">
                             <label class="col-md-4 control-label requiredField" for="date">
-                                Date of Birth:
+                                <fmt:message key="addform.label.dateofbirth"></fmt:message>
        <span class="asteriskField">
         *
        </span>
@@ -80,7 +83,8 @@
 
                     <!-- Password input-->
                     <div class="form-group required">
-                        <label class="col-md-4 control-label" for="txtpass">Password :</label>
+                        <label class="col-md-4 control-label" for="txtpass"><fmt:message
+                                key="addform.label.password"></fmt:message></label>
 
                         <div class="col-md-5">
                             <input id="txtpass" name="txtpass" placeholder="enter password"
@@ -91,7 +95,8 @@
 
                     <!-- Password confirm input-->
                     <div class="form-group required">
-                        <label class="col-md-4 control-label" for="txtconfpass">Confirm Password :</label>
+                        <label class="col-md-4 control-label" for="txtconfpass"><fmt:message
+                                key="addform.label.confirmpasswd"></fmt:message></label>
 
                         <div class="col-md-5">
                             <input id="txtconfpass" name="txtconfpass" placeholder="re-enter password"
@@ -102,7 +107,8 @@
 
                     <!--User group-->
                     <div class="form-group required">
-                        <label class="col-md-4 control-label" for="slctgrp">Select Group :</label>
+                        <label class="col-md-4 control-label" for="slctgrp"><fmt:message
+                                key="addform.label.selectgroup"></fmt:message></label>
 
                         <div class="col-md-4">
                             <select id="slctgrp" name="slctgrp" class="form-control">
@@ -114,7 +120,8 @@
 
                     <!--Country-->
                     <div class="form-group required">
-                        <label class="col-md-4 control-label" for="slctcountry">Select Country :</label>
+                        <label class="col-md-4 control-label" for="slctcountry"><fmt:message
+                                key="addform.label.selectcountry"></fmt:message></label>
 
                         <div class="col-md-4">
                             <select id="slctcountry" name="slctcountry" class="form-control">
@@ -131,7 +138,8 @@
 
                     <%--City--%>
                     <div class="form-group required">
-                        <label class="col-md-4 control-label" for="slctcity">Select City :</label>
+                        <label class="col-md-4 control-label" for="slctcity"><fmt:message
+                                key="addform.label.selectcity"></fmt:message></label>
 
                         <div class="col-md-4">
                             <select id="slctcity" name="slctcity" class="form-control">
@@ -143,7 +151,8 @@
 
                     <!-- phone no input-->
                     <div class="form-group required">
-                        <label class="col-md-4 control-label" for="txtphone">Phone :</label>
+                        <label class="col-md-4 control-label" for="txtphone"><fmt:message
+                                key="addform.label.phone"></fmt:message></label>
 
                         <div class="col-md-4">
                             <input id="txtphone" name="txtphone" placeholder="enter phone number"
@@ -154,7 +163,8 @@
 
                     <!-- email input-->
                     <div class="form-group required">
-                        <label class="col-md-4 control-label" for="txtemail">Email :</label>
+                        <label class="col-md-4 control-label" for="txtemail"><fmt:message
+                                key="addform.label.email"></fmt:message></label>
 
                         <div class="col-md-5">
                             <input id="txtemail" name="txtemail" placeholder="enter your email"
@@ -162,7 +172,6 @@
                             <label id="emailerr" class="input-group-error form-error"></label>
                         </div>
                     </div>
-
 
 
                 </fieldset>
@@ -173,13 +182,15 @@
                 <label class="col-md-4 control-label" for="btnAddusr"></label>
 
                 <div class="col-md-4">
-                    <button id="btnAddusr" name="btnAddusr" class="btn btn-default">Add User
+                    <button id="btnAddusr" name="btnAddusr" class="btn btn-default"><fmt:message
+                            key="addform.label.addbutton"></fmt:message>
                     </button>
                 </div>
                 <label class="col-md-4 control-label"></label>
 
                 <div class="col-md-4">
-                    <button id="btncancel" name="btncancel" class="btn btn-default">Cancel</button>
+                    <button id="btncancel" name="btncancel" class="btn btn-default"><fmt:message
+                            key="addform.label.cancelbutton"></fmt:message></button>
                 </div>
             </div>
 
