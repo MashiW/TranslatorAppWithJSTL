@@ -1,0 +1,99 @@
+.glyphicon.glyphicon-pencil {
+    font-size: 50px;
+}
+
+#loginModal {
+    top: 20%;
+    outline: none;
+    border-radius: inherit;
+}
+.modal-title {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.modal-header, h4, .close {
+      background-color: #aa80ff;
+      color:white !important;
+      text-align: center;
+      font-size: 30px;
+  }
+ .modal-footer {
+      background-color: #f9f9f9;
+  }
+ .jumbotron{
+          background: url(../images/soft_white_background.jpg) center center;
+          width: 100%;
+          background-size: cover;
+  }
+
+    #translatebody{
+        background-color:#898787;
+    }
+
+.top-buffer {
+    margin-top: 0px;
+}
+
+/*#trjumbotron{
+    background: url(../images/soft_white_background.jpg) center center;
+    width: 100%;
+    background-size: cover;
+}*/
+/*.container-fluid {
+    width: 80%;
+}*/
+
+#divheader {
+    /*background-color: #aa80ff;*/
+    color: #aa80ff;
+!important;
+    text-align: center;
+    padding: 0;
+}
+
+#divheader h2 {
+    vertical-align: middle;
+    }
+
+.form-group.required .control-label:after {
+    content: "*";
+    color: red;
+}
+
+.input-group-error {
+    /*display:table-row;*/
+    color: red;
+    font: italic bold 11px styleset;
+}
+
+.input-group-error .form-error {
+    margin-top: 0.5rem;
+}
+
+.status {
+    font-size: 11px;
+    margin-left: 10px;
+}
+
+.green {
+    background-color: #CEFFCE;
+}
+
+.red {
+    background-color: #FFD9D9;
+}
+
+.dropdown-menu > .active > a {
+    background-color: #AA80FF;
+}
+
+.dropdown-menu > .active > a:focus {
+    background-color: #AA80FF;
+}
+
+.dropdown-menu > .active > a:hover {
+    background-color: #AA80FF;
+}
+
+a {
+    color: #AA80FF;
+}
