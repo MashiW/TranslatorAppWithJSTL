@@ -9,14 +9,16 @@
             <br>
             <!-- usrname input-->
             <div class="form-group required">
-                <label class="col-md-3 control-label" for="txtSrchun" align="right">User Name :</label>
+                <label class="col-md-3 control-label" for="txtSrchun" align="right"><fmt:message
+                        key="search.label.username"></fmt:message></label>
 
                 <div class="col-md-4">
                     <input id="txtSrchun" name="txtSrchun" placeholder="enter user name"
                            class="form-control typeahead">
                     <label id="sercherr" class="input-group-error form-error"></label>
                 </div>
-                <div class="btn btn-default" id="btnSrchUser" value="Search">Search User</div>
+                <div class="btn btn-default" id="btnSrchUser" value="Search"><fmt:message
+                        key="search.button.searchuser"></fmt:message></div>
             </div>
 
             <table id="table">
@@ -34,7 +36,8 @@
         <div class="modal-content" style="">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h4 class="modal-title">Update User</h4>
+                <h4 class="modal-title"><fmt:message
+                        key="search.modal.updateuser"></fmt:message></h4>
             </div>
             <div class="modal-body">
             </div>
@@ -42,11 +45,12 @@
                 <form class="form-horizontal" id="frmUsrUpdt" name="frmUsrUpdt" method="post">
                     <fieldset>
 
-                        <legend><h5><i>Fill out Relevant Fields </i></h5></legend>
+                        <legend><h5><i><fmt:message key="search.modal.message"></fmt:message></i></h5></legend>
 
                         <!-- usrname input-->
                         <div class="form-group required">
-                            <label class="col-md-5 control-label" for="txtunameUpd">User Name :</label>
+                            <label class="col-md-5 control-label" for="txtunameUpd">
+                                <fmt:message key="searchform.label.username"></fmt:message> </label>
 
                             <div class="col-md-6">
                                 <input id="txtunameUpd" name="txtunameUpd" placeholder="edit user name"
@@ -57,7 +61,8 @@
 
                         <!-- firstname input-->
                         <div class="form-group required">
-                            <label class="col-md-5 control-label" for="txtfnameUpd">First Name :</label>
+                            <label class="col-md-5 control-label" for="txtfnameUpd">
+                                <fmt:message key="searchform.label.firstname"></fmt:message></label>
 
                             <div class="col-md-6">
                                 <input id="txtfnameUpd" name="txtfnameUpd" placeholder="edit first name"
@@ -68,7 +73,9 @@
 
                         <!-- lastname input-->
                         <div class="form-group">
-                            <label class="col-md-5 control-label" for="txtlstnmUpd">Last Name :</label>
+                            <label class="col-md-5 control-label" for="txtlstnmUpd">
+                                <fmt:message key="searchform.label.lastname"></fmt:message>
+                            </label>
 
                             <div class="col-md-6">
                                 <input id="txtlstnmUpd" name="txtlstnmUpd" placeholder="edit last name"
@@ -95,7 +102,7 @@
                         <div>
                             <div class="bootstrap-iso form-group">
                                 <label class="col-md-5 control-label requiredField" for="dateUpdt">
-                                    Date of Birth:
+                                    <fmt:message key="searchform.label.dob"></fmt:message>
                                    <span class="asteriskField">
                                     *
                                    </span>
@@ -113,7 +120,9 @@
 
                         <!-- Password input-->
                         <div class="form-group required">
-                            <label class="col-md-5 control-label" for="txtpassUpd">Password :</label>
+                            <label class="col-md-5 control-label" for="txtpassUpd">
+                                <fmt:message key="searchform.label.password"></fmt:message>
+                            </label>
 
                             <div class="col-md-6">
                                 <input id="txtpassUpd" name="txtpassUpd" placeholder="enter password"
@@ -124,7 +133,8 @@
 
                         <!-- Password confirm input-->
                         <div class="form-group required">
-                            <label class="col-md-5 control-label" for="txtconfpassUpd">Confirm Password :</label>
+                            <label class="col-md-5 control-label" for="txtconfpassUpd">
+                                <fmt:message key="searchform.label.confpasswd"></fmt:message></label>
 
                             <div class="col-md-6">
                                 <input id="txtconfpassUpd" name="txtconfpassUpd" placeholder="re-enter password"
@@ -135,7 +145,9 @@
 
                         <!--User group-->
                         <div class="form-group required">
-                            <label class="col-md-5 control-label" for="slctgrpUpd">Select Group :</label>
+                            <label class="col-md-5 control-label" for="slctgrpUpd">
+                                <fmt:message key="searchform.label.selectgrp"></fmt:message>
+                            </label>
 
                             <div class="col-md-5">
                                 <select id="slctgrpUpd" name="slctgrpUpd" class="form-control">
@@ -147,7 +159,9 @@
 
                         <!--Country-->
                         <div class="form-group required">
-                            <label class="col-md-5 control-label" for="slctcountryUpd">Select Country :</label>
+                            <label class="col-md-5 control-label" for="slctcountryUpd">
+                                <fmt:message key="searchform.label.selectcountry"></fmt:message>
+                            </label>
 
                             <div class="col-md-5">
                                 <select id="slctcountryUpd" name="slctcountryUpd" class="form-control">
@@ -164,7 +178,9 @@
 
                         <%--City--%>
                         <div class="form-group required">
-                            <label class="col-md-5 control-label" for="slctcityUpd">Select City :</label>
+                            <label class="col-md-5 control-label" for="slctcityUpd">
+                                <fmt:message key="searchform.label.selectcity"></fmt:message>
+                            </label>
 
                             <div class="col-md-4">
                                 <select id="slctcityUpd" name="slctcityUpd" class="form-control">
@@ -176,7 +192,9 @@
 
                         <!-- phone no input-->
                         <div class="form-group required">
-                            <label class="col-md-5 control-label" for="txtphoneUpd">Phone :</label>
+                            <label class="col-md-5 control-label" for="txtphoneUpd">
+                                <fmt:message key="searchform.label.phone"></fmt:message>
+                            </label>
 
                             <div class="col-md-5">
                                 <input id="txtphoneUpd" name="txtphoneUpd" placeholder="enter phone number"
@@ -187,7 +205,9 @@
 
                         <!-- email input-->
                         <div class="form-group required">
-                            <label class="col-md-5 control-label" for="txtemailUpd">Email :</label>
+                            <label class="col-md-5 control-label" for="txtemailUpd">
+                                <fmt:message key="searchform.label.email"></fmt:message>
+                            </label>
 
                             <div class="col-md-6">
                                 <input id="txtemailUpd" name="txtemailUpd" placeholder="enter your email"
@@ -204,18 +224,23 @@
                     <label class="col-md-4"></label>
 
                     <div class="col-md-4">
-                        <button id="btnUpdtusr" name="btnUpdtusr" class="btn btn-default">Update User
+                        <button id="btnUpdtusr" name="btnUpdtusr" class="btn btn-default">
+                            <fmt:message key="searchform.button.updateuser"></fmt:message>
                         </button>
                     </div>
 
                     <div class="col-md-4">
-                        <button id="btncancelUpdt" name="btncancelUpdt" class="btn btn-default">Reset</button>
+                        <button id="btncancelUpdt" name="btncancelUpdt" class="btn btn-default">
+                            <fmt:message key="searchform.button.reset"></fmt:message>
+                        </button>
                     </div>
                 </div>
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    <fmt:message key="searchform.button.cancel"></fmt:message>
+                </button>
             </div>
         </div>
     </div>
@@ -228,18 +253,25 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h4 class="modal-title">Delete User</h4>
+                <h4 class="modal-title">
+                    <fmt:message key="deletemodal.title"></fmt:message>
+                </h4>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label> Do you want to delete user : <label id="lblUname"></label></label>
+                    <label><fmt:message key="deletemodal.message"></fmt:message><label id="lblUname"></label></label>
                     <br>
-                    <button class="btn" type="button" value="Yes" id="btnDeltUsr">Yes</button>
-                    <button class="btn" type="button" value="cancel" id="btnCnclDelt">Cancel</button>
+                    <button class="btn" type="button" value="Yes" id="btnDeltUsr">
+                        <fmt:message key="deletemodal.button.yes"></fmt:message>
+                    </button>
+                    <button class="btn" type="button" value="cancel" id="btnCnclDelt">
+                        <fmt:message key="deletemodal.button.cancel"></fmt:message>
+                    </button>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-backdrop="static" data-keyboard="false">Close
+                <button type="button" class="btn btn-default" data-backdrop="static" data-keyboard="false">
+                    <fmt:message key="deletemodal.button.close"></fmt:message>
                 </button>
             </div>
         </div>
