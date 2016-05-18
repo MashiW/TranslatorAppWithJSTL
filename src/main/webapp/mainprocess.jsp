@@ -68,6 +68,7 @@
             </div>
 
             <div class="tab-content">
+                <%=session.getAttribute("permissions")%>
                 <div id="transcontent" class="tab-pane fade in active">
                     <%@include file="logintranslate.jsp" %>
                 </div>

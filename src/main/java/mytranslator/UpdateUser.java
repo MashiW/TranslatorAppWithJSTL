@@ -34,8 +34,10 @@ public class UpdateUser extends HttpServlet {
         String phone = request.getParameter("txtphoneUpd");
         String email = request.getParameter("txtemailUpd");
 
-        String sql = "update user SET first_name=\'" + fname + "\',last_name=\'" + lname + "\',dob=\'" + dob + "\',phone_no=\'" + phone + "\'," +
-                "country=\'" + country + "\',city_id=(select id from city where city=\'" + city + "\') ,email=\'" + email + "\' WHERE username=\'" + uname + "\';";
+        String sql = "update user SET first_name=\'" + fname + "\'," +
+                "last_name=\'" + lname + "\',dob=\'" + dob + "\',phone_no=\'" + phone + "\'," +
+                "country=\'" + country + "\',city_id=(select id from city where city=\'" + city + "\') ," +
+                "email=\'" + email + "\' WHERE username=\'" + uname + "\';";
 
         Connection con = null;
         PreparedStatement st;
@@ -47,7 +49,8 @@ public class UpdateUser extends HttpServlet {
 
             if (rs == 1) {
 
-                String sqlGrp = "update user_group set grp_id=(select id from tbl_group where name=\'" + grp + "\') WHERE username=\'" + uname + "\' ";
+                String sqlGrp = "update user_group set grp_id=(select id from tbl_group where name=\'" + grp + "\')" +
+                        "WHERE username=\'" + uname + "\' ";
 
                 st = con.prepareStatement(sqlGrp);
                 int rs2 = st.executeUpdate();

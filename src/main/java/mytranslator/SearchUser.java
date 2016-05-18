@@ -62,15 +62,6 @@ public class SearchUser extends HttpServlet {
                 while (rs2.next()) {
                     jsonObj.addProperty("usrcity", rs2.getString("city"));
                 }
-
-                /*String grpsql= "SELECT name FROM tbl_group WHERE id=(SELECT grp_id FROM user_group WHERE username=" +Integer.parseInt(rs.getString(1))+");";
-                st = con.prepareStatement(grpsql);
-                rs3 = st.executeQuery();
-
-                while (rs3.next()){
-                    jsonObj.addProperty("usrgrp",rs3.getString("name"));
-                }*/
-
                 jsonArray.add(jsonObj);
             }
             out.println(jsonArray);

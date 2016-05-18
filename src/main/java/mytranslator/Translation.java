@@ -33,7 +33,7 @@ public class Translation {
     public ArrayList<String> getLangs() throws ServletException {
 
         HttpClient httpClient = new DefaultHttpClient();
-        HttpGet request = new HttpGet(propobj.getproperty("yandex.langs.list","system.properties"));
+        HttpGet request = new HttpGet(propobj.getproperty("yandex.langs.list", "system.properties"));
 
         HttpResponse response = null;
         InputStream input = null;// Get the response
@@ -75,12 +75,13 @@ public class Translation {
         return listValues;
     }
 
-    public String textTranslate(String fromText, String fromLang, String toLang) throws IOException, SAXException, ParserConfigurationException {
+    public String textTranslate(String fromText, String fromLang, String toLang) throws
+            IOException, SAXException, ParserConfigurationException {
 
         PropertyReader propobj2 = new PropertyReader();
 
-        String yndxUrl = propobj2.getproperty("yandex.url","system.properties");
-        String apiKey = propobj2.getproperty("yandex.api.key","system.properties");
+        String yndxUrl = propobj2.getproperty("yandex.url", "system.properties");
+        String apiKey = propobj2.getproperty("yandex.api.key", "system.properties");
 
         String url = yndxUrl + apiKey + "&text=" + fromText + "&lang=" + fromLang + "-" + toLang;
         HttpClient client = new DefaultHttpClient();

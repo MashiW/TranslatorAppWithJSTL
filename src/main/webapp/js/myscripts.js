@@ -18,3 +18,18 @@
         });
 
 
+$(document).ready(function () {
+
+    $("#btnlogin").click(function () {
+
+        var usernm = $("#txtlogin").val();
+        $.ajax({
+            type: "POST",
+            url: "UserPermission",
+            data: {"usernm": usernm},
+            success: function (data) {
+                alert(data);
+            }
+        })
+    })
+})

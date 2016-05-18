@@ -59,7 +59,8 @@
                                 <div class="form-group">
                                     <label><span class="glyphicon glyphicon-user"></span>&nbsp;
                                         <fmt:message key="login.modal.usernm.label"></fmt:message></label>
-                                    <input type="text" class="form-control" name="txtUn" placeholder="Enter your name"
+                                    <input id="txtlogin" type="text" class="form-control" name="txtUn"
+                                           placeholder="Enter your name"
                                            required>
                                 </div>
                                 <div class="form-group">
@@ -86,7 +87,8 @@
                                 <div class="modal-footer">
 
                                     <div>
-                                        <button type="submit" class="btn btn-default glyphicon glyphicon-log-in">
+                                        <button type="submit" class="btn btn-default glyphicon glyphicon-log-in"
+                                                id="btnlogin">
                                             &nbsp;<fmt:message key="login.modal.button.label"></fmt:message></button>
                                     </div>
                                 </div>

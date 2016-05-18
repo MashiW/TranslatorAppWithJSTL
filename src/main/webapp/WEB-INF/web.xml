@@ -55,6 +55,10 @@
         <servlet-name>loadGroup</servlet-name>
         <servlet-class>mytranslator.LoadGroup</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>userPermission</servlet-name>
+        <servlet-class>mytranslator.UserPermission</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>login</servlet-name>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>loadGroup</servlet-name>
         <url-pattern>/LoadGroup</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>userPermission</servlet-name>
+        <url-pattern>/UserPermission</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>logout</servlet-name>
