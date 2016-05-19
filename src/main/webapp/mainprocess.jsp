@@ -69,12 +69,14 @@
                                         class="caret"></span></a>
                                     <ul class="dropdown-menu">
 
+                                            <%--setting user add tab--%>
                                         <li><a data-toggle="tab" href="#userAddcontent">
                                             <fmt:message key="navbar.adduser.label"></fmt:message> </a></li>
                                         </c:when>
                                         </c:choose>
                                         </c:forEach>
 
+                                            <%--setting user search tab--%>
                                         <c:forEach var="pers" items="${perList}">
                                             <c:choose>
                                                 <c:when test="${pers == 'Search_user' || 'Edit_user' || 'Add_user' || 'Delete_user'}">
@@ -87,6 +89,7 @@
                                     </ul>
                                 </li>
                             </ul>
+
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="LogoutServlet"><span class="glyphicon glyphicon-log-in"></span>
                                     <fmt:message key="navbar.logout.label"></fmt:message> </a>
@@ -175,6 +178,8 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+
+    <%--Date picker function for registering user--%>
     <script>
         $(document).ready(function () {
             var date_input = $('input[name="date"]');
@@ -190,6 +195,8 @@
             })
         })
     </script>
+
+    <%--Date picker function for updating user--%>
     <script>
         $(document).ready(function () {
             var date_input = $('input[name="dateUpdt"]');
