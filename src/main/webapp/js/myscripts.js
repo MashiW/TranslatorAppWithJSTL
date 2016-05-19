@@ -26,10 +26,7 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             url: "UserPermission",
-            data: {"usernm": usernm},
-            success: function (data) {
-                alert(data);
-            }
+            data: {"usernm": usernm}
         })
     })
 })

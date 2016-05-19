@@ -25,6 +25,11 @@
 </head>
 
 <body id="translatebody">
+
+<%
+    request.setAttribute("perList", request.getSession().getAttribute("permissions"));
+%>
+
 <fmt:bundle basename="jstlmessages">
 
     <div class="container-fluid">
@@ -43,16 +48,42 @@
                                         <b><%= session.getAttribute("sessionname")%>
                                             ..&nbsp; </b></h3>
                                 </div>
-                                <li class="active"><a data-toggle="tab" href="#transcontent">
-                                    <fmt:message key="index.translator.label"></fmt:message> </a></li>
+
+                                    <%--setting translation tab--%>
+                                <c:forEach var="pers" items="${perList}">
+                                    <c:choose>
+                                        <c:when test="${pers == 'Translate' || 'Search_user'}">
+                                            <li class="active"><a data-toggle="tab" href="#transcontent">
+                                                <fmt:message key="index.translator.label"></fmt:message> </a></li>
+                                        </c:when>
+                                    </c:choose>
+                                </c:forEach>
+
+
+                                    <%--setting user management tab--%>
+                                <c:forEach var="pers" items="${perList}">
+                                <c:choose>
+                                <c:when test="${pers == 'Add_user'}">
                                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                     <fmt:message key="navbar.usermgt.label"></fmt:message><span
                                         class="caret"></span></a>
                                     <ul class="dropdown-menu">
+
                                         <li><a data-toggle="tab" href="#userAddcontent">
                                             <fmt:message key="navbar.adduser.label"></fmt:message> </a></li>
-                                        <li><a data-toggle="tab" href="#userSearchcontent">
-                                            <fmt:message key="navbar.searchuser.label"></fmt:message> </a></li>
+                                        </c:when>
+                                        </c:choose>
+                                        </c:forEach>
+
+                                        <c:forEach var="pers" items="${perList}">
+                                            <c:choose>
+                                                <c:when test="${pers == 'Search_user' || 'Edit_user' || 'Add_user' || 'Delete_user'}">
+                                                    <li><a data-toggle="tab" href="#userSearchcontent">
+                                                        <fmt:message key="navbar.searchuser.label"></fmt:message> </a>
+                                                    </li>
+                                                </c:when>
+                                            </c:choose>
+                                        </c:forEach>
                                     </ul>
                                 </li>
                             </ul>
@@ -68,15 +99,41 @@
             </div>
 
             <div class="tab-content">
-                <%=session.getAttribute("permissions")%>
                 <div id="transcontent" class="tab-pane fade in active">
-                    <%@include file="logintranslate.jsp" %>
+
+                    <c:forEach var="pers" items="${perList}">
+                        <c:choose>
+                            <c:when test="${pers == 'Translate'}">
+
+                                <%@include file="logintranslate.jsp" %>
+
+                            </c:when>
+                        </c:choose>
+                    </c:forEach>
+
                 </div>
                 <div id="userAddcontent" class="tab-pane fade">
-                    <%@include file="adduser.jsp" %>
+                    <c:forEach var="pers" items="${perList}">
+                        <c:choose>
+                            <c:when test="${pers == 'Add_user'}">
+
+                                <%@include file="adduser.jsp" %>
+
+                            </c:when>
+                        </c:choose>
+                    </c:forEach>
                 </div>
+
                 <div id="userSearchcontent" class="tab-pane fade">
-                    <%@include file="searchuser.jsp" %>
+                    <c:forEach var="pers" items="${perList}">
+                        <c:choose>
+                            <c:when test="${pers == 'Search_user'}">
+
+                                <%@include file="searchuser.jsp" %>
+
+                            </c:when>
+                        </c:choose>
+                    </c:forEach>
                 </div>
             </div>
 

@@ -29,7 +29,7 @@ public class UserPermission extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         HttpSession session = request.getSession();
-        String usernm = request.getParameter("username");
+        String usernm = request.getParameter("usernm");
 
         Connection con = null;
         ResultSet rs = null;
@@ -53,9 +53,9 @@ public class UserPermission extends HttpServlet {
                 permissionlist.add(rs.getString("name"));
             }
             session.setAttribute("permissions", permissionlist);
-            out.println(permissionlist);
 
         } catch (SQLException ex) {
+            LOGGER.error("Errr");
 
         } finally {
             try {
