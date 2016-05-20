@@ -34,7 +34,10 @@ public class RegisterUser extends HttpServlet {
         String phone = request.getParameter("txtphone");
         String email = request.getParameter("txtemail");
 
-        String sql = "insert into user(username,usr_pass,first_name,last_name,dob,phone_no,country,city_id,email) values(\'" + uname + "\',md5(\'" + pswd + "\'),\'" + fname + "\',\'" + lname + "\',\'" + dob + "\',\'" + phone + "\',\'" + country + "\',(select id from city where city=\'" + city + "\'),\'" + email + "\');";
+        String sql = "insert into user(username,usr_pass,first_name,last_name,dob,phone_no,country,city_id,email)" +
+                "values(\'" + uname + "\',md5(\'" + pswd + "\'),\'" + fname + "\',\'" + lname + "\',\'" + dob + "\',\'"
+                + phone + "\',\'" + country + "\',(select id from city where city=\'" + city + "\'),\'"
+                + email + "\');";
 
 
         Connection con = null;
@@ -47,7 +50,8 @@ public class RegisterUser extends HttpServlet {
 
             if (rs == 1) {
 
-                String sqlGrp = "insert into user_group (username, grp_id) values(\'" + uname + "\',(select id from tbl_group where name=\'" + grp + "\'))";
+                String sqlGrp = "insert into user_group (username, grp_id) values(\'" + uname + "\'," +
+                        "(select id from tbl_group where name=\'" + grp + "\'))";
                 st = con.prepareStatement(sqlGrp);
                 int rs2 = st.executeUpdate();
 

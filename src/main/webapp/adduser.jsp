@@ -111,7 +111,8 @@
                                 key="addform.label.selectgroup"></fmt:message></label>
 
                         <div class="col-md-4">
-                            <select id="slctgrp" name="slctgrp" class="form-control">
+                            <select id="slctgrp" name="slctgrp" class="form-control selectpicker" multiple
+                                    title="Select group(s)">
                                 <option value="0">--Select--</option>
                             </select>
                             <label id="grperr" class="input-group-error form-error"></label>
@@ -124,8 +125,9 @@
                                 key="addform.label.selectcountry"></fmt:message></label>
 
                         <div class="col-md-4">
-                            <select id="slctcountry" name="slctcountry" class="form-control">
-                                <option value="0">--Select--</option>
+                            <select id="slctcountry" name="slctcountry" class="form-control selectpicker"
+                                    title="Select Country">
+                                <option value="0"></option>
                                 <option>Sri Lanka</option>
                                 <option>Japan</option>
                                 <option>India</option>

@@ -35,7 +35,8 @@ public class Login extends HttpServlet {
         /**
          *new obj creation of Translation class
          */
-        Translation translate = null;
+        Translation translate;
+        UserPermission userPermission;
 
         response.setContentType("text/html");
 
@@ -45,6 +46,16 @@ public class Login extends HttpServlet {
          */
         String username = request.getParameter("txtUn");
         String password = request.getParameter("txtPw");
+
+        /**
+         *permission checking when logging
+         */
+
+        userPermission = new UserPermission();
+        ArrayList<String> perList = null;
+        perList = userPermission.getPermissionList(username);
+        request.getSession().setAttribute("permissions", perList);
+
 
         if (loginValidate(username, password)) {
 

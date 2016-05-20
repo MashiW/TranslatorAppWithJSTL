@@ -14,9 +14,12 @@
             integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="css/mystyles.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
     <script src="js/myscripts.js"></script>
     <script src="js/valiadateinput.js"></script>
     <script src="js/updateuser.js"></script>
@@ -27,8 +30,14 @@
 <body id="translatebody">
 
 <%
+    request.setAttribute("userSession", request.getSession().getAttribute("sessionname"));
     request.setAttribute("perList", request.getSession().getAttribute("permissions"));
 %>
+
+<%--
+<label id="lblSessionUser" type="hidden" value="userSession"></label>
+--%>
+<input type="hidden" id="lblSessionUser" value="${userSession}"/>
 
 <fmt:bundle basename="jstlmessages">
 
@@ -39,6 +48,7 @@
                     <h3><b><fmt:message key="index.welcome.message"></fmt:message></b></h3>
                     <hr style="color: #aa80ff;border: 1px solid;">
                 </div>
+
                 <div id="navbarMain">
                     <nav class="navbar navbar-inverse navbar-fixed-top">
                         <div class="container-fluid">
@@ -61,13 +71,15 @@
 
 
                                     <%--setting user management tab--%>
-                                <c:forEach var="pers" items="${perList}">
+                                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"
+                                                        id="usermgtTab">
+                                    <fmt:message key="navbar.usermgt.label"></fmt:message>
+                                    <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+
+                                    <c:forEach var="pers" items="${perList}">
                                 <c:choose>
                                 <c:when test="${pers == 'Add_user'}">
-                                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <fmt:message key="navbar.usermgt.label"></fmt:message><span
-                                        class="caret"></span></a>
-                                    <ul class="dropdown-menu">
 
                                             <%--setting user add tab--%>
                                         <li><a data-toggle="tab" href="#userAddcontent">

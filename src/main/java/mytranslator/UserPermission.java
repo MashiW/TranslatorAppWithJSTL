@@ -20,6 +20,8 @@ public class UserPermission extends HttpServlet {
 
     private static final Logger LOGGER = LogManager.getLogger(UserPermission.class);
 
+    ArrayList<String> permissionlist = new ArrayList<String>();
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
 
@@ -28,18 +30,23 @@ public class UserPermission extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
-        HttpSession session = request.getSession();
-        String usernm = request.getParameter("usernm");
+        permissionlist = getPermissionList(request.getParameter("userName"));
+        out.println(permissionlist);
+    }
+
+    public ArrayList<String> getPermissionList(String userName) throws ServletException {
 
         Connection con = null;
         ResultSet rs = null;
         PreparedStatement st = null;
+        ArrayList<String> arrayList = new ArrayList<String>();
+
         String sqlgroup = "SELECT name FROM `permission`\n" +
                 "WHERE id IN\n" +
                 "(SELECT per_id FROM permission_group\n" +
                 " WHERE grp_id IN\n" +
                 " (SELECT grp_id FROM user_group\n" +
-                "  WHERE username=\'" + usernm + "\'))";
+                "  WHERE username=\'" + userName + "\'))";
 
         try {
 
@@ -47,15 +54,13 @@ public class UserPermission extends HttpServlet {
             st = con.prepareStatement(sqlgroup);
             rs = st.executeQuery();
 
-            ArrayList<String> permissionlist = new ArrayList<String>();
-
             while (rs.next()) {
-                permissionlist.add(rs.getString("name"));
+                arrayList.add(rs.getString("name"));
+                //out.print(permissionlist);
             }
-            session.setAttribute("permissions", permissionlist);
 
         } catch (SQLException ex) {
-            LOGGER.error("Errr");
+            LOGGER.error("Error..");
 
         } finally {
             try {
@@ -71,6 +76,6 @@ public class UserPermission extends HttpServlet {
                 LOGGER.fatal("Error closing UserPermission resultset !", ex);
             }
         }
-
+        return arrayList;
     }
 }
