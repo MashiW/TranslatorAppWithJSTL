@@ -216,15 +216,13 @@ $(document).ready(function () {
                     }
                 }
             })
-            /*$("#table").bootstrapTable('refresh', {
-             url: 'SearchUser'
-             })*/
         } else {
             alert("error in usr update validation !")
         }
     })
+
     $("#btncancelUpdt").click(function () {
-        $("#txtfnameUpd, #txtlstnmUpd,#txtpassUpd, #txtconfpassUpd, #dateUpdt, #slctcountryUpd, #slctcityUpd, #txtphoneUpd, #txtemailUpd").val('');
+        $("#txtfnameUpd, #txtlstnmUpd,#txtpassUpd, #txtconfpassUpd, #dateUpdt, #slctgrpUpd, #slctcountryUpd, #slctcityUpd, #txtphoneUpd, #txtemailUpd").val('');
     })
 
     /*
@@ -243,7 +241,6 @@ $(document).ready(function () {
                 if (msg == 1) {
                     alert("Deleted user !");
                     $("#usrDeleteModal").modal('hide');
-
                 }
             }
         })
@@ -253,24 +250,42 @@ $(document).ready(function () {
         $("#usrDeleteModal").modal("hide");
     })
 
+
     /*
      * loading group list
      */
+    $("#linkEditUser").click(function () {
+        $.ajax({
+            url: 'LoadGroup',
+            dataType: 'JSON',
+            type: 'POST',
+            success: function (data) {
 
-    $.ajax({
-        url: 'LoadGroup',
-        dataType: 'JSON',
-        type: 'POST',
-        success: function (data) {
+                var slctgrpUp = $("#slctgrpUpd"), option = "";
+                slctgrpUp.empty();
 
-            var slctgrpUp = $("#slctgrpUpd"), option = "";
-            slctgrpUp.empty();
+                for (var x = 0; x < data.length; x++) {
+                    option = option + "<option value='" + data[x].group + "'>" + data[x].group + "</option>";
+                }
+                slctgrpUp.append(option);
 
-            for (var x = 0; x < data.length; x++) {
-                option = option + "<option value='" + data[x].group + "'>" + data[x].group + "</option>";
+                /*$.ajax({
+                 url:'LoadGroup',
+                 dataType: 'JSON',
+                 type:'POST',
+                 data:{"slctdgrp":slctgrpUp},
+                 success:function(data){
+                 if(slctgrpUp.value.match(data[x])){
+                 for (var y = 0; y < data.length; y++) {
+                 option = option + "<option selected='" + data[y].group + "'>" + data[y].group + "</option>";
+                 }
+                 slctgrpUp.append(option);
+                 }
+
+                 }
+                 })*/
             }
-            slctgrpUp.append(option);
-        }
+        })
     })
 
 

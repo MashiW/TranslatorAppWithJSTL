@@ -34,9 +34,6 @@
     request.setAttribute("perList", request.getSession().getAttribute("permissions"));
 %>
 
-<%--
-<label id="lblSessionUser" type="hidden" value="userSession"></label>
---%>
 <input type="hidden" id="lblSessionUser" value="${userSession}"/>
 
 <fmt:bundle basename="jstlmessages">
@@ -82,7 +79,7 @@
                                 <c:when test="${pers == 'Add_user'}">
 
                                             <%--setting user add tab--%>
-                                        <li><a data-toggle="tab" href="#userAddcontent">
+                                    <li><a data-toggle="tab" href="#userAddcontent" id="userAddLink">
                                             <fmt:message key="navbar.adduser.label"></fmt:message> </a></li>
                                         </c:when>
                                         </c:choose>
@@ -92,7 +89,8 @@
                                         <c:forEach var="pers" items="${perList}">
                                             <c:choose>
                                                 <c:when test="${pers == 'Search_user' || 'Edit_user' || 'Add_user' || 'Delete_user'}">
-                                                    <li><a data-toggle="tab" href="#userSearchcontent">
+                                                    <li><a data-toggle="tab" href="#userSearchcontent"
+                                                           id="userSearchLink">
                                                         <fmt:message key="navbar.searchuser.label"></fmt:message> </a>
                                                     </li>
                                                 </c:when>

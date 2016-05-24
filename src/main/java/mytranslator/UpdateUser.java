@@ -28,7 +28,7 @@ public class UpdateUser extends HttpServlet {
         String fname = request.getParameter("txtfnameUpd");
         String lname = request.getParameter("txtlstnmUpd");
         String dob = request.getParameter("dateUpdt");
-        String grp = request.getParameter("slctgrpUpd");
+        String[] grp = request.getParameterValues("slctgrpUpd");
         String country = request.getParameter("slctcountryUpd");
         String city = request.getParameter("slctcityUpd");
         String phone = request.getParameter("txtphoneUpd");
@@ -41,6 +41,7 @@ public class UpdateUser extends HttpServlet {
 
         Connection con = null;
         PreparedStatement st;
+        int rs2 = 0;
 
         try {
             con = Database.cpds.getConnection();
@@ -48,24 +49,20 @@ public class UpdateUser extends HttpServlet {
             int rs = st.executeUpdate();
 
             if (rs == 1) {
+                for (int i = 0; i < grp.length; i++) {
+                    String sqlGrp = "update user_group set grp_id=(select id from tbl_group where name=\'" + grp[i] + "\')" +
+                            "WHERE username=\'" + uname + "\' ";
 
-                String sqlGrp = "update user_group set grp_id=(select id from tbl_group where name=\'" + grp + "\')" +
-                        "WHERE username=\'" + uname + "\' ";
-
-                st = con.prepareStatement(sqlGrp);
-                int rs2 = st.executeUpdate();
+                    st = con.prepareStatement(sqlGrp);
+                    rs2 = st.executeUpdate();
+                }
 
                 if (rs2 == 1) {
+                    LOGGER.trace("Updated user " + uname + " successfully !");
                     out.println(rs);
+                } else {
+                    LOGGER.error("Error: cannot update user" + uname + "!");
                 }
-            }
-
-            LOGGER.trace("rs= " + rs);
-
-            if (rs == 1) {
-                LOGGER.trace("Updated user " + uname + ";");
-            } else {
-                LOGGER.error("Error: cannot update user" + uname + ";");
             }
 
         } catch (Exception e) {

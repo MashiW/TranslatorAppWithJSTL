@@ -56,7 +56,6 @@ public class Login extends HttpServlet {
         perList = userPermission.getPermissionList(username);
         request.getSession().setAttribute("permissions", perList);
 
-
         if (loginValidate(username, password)) {
 
             /**

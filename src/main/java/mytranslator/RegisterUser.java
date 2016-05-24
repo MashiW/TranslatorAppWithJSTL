@@ -28,7 +28,7 @@ public class RegisterUser extends HttpServlet {
         String lname = request.getParameter("txtlstnm");
         String dob = request.getParameter("date");
         String pswd = request.getParameter("txtpass");
-        String grp = request.getParameter("slctgrp");
+        String[] grp = request.getParameterValues("slctgrp");
         String country = request.getParameter("slctcountry");
         String city = request.getParameter("slctcity");
         String phone = request.getParameter("txtphone");
@@ -42,7 +42,7 @@ public class RegisterUser extends HttpServlet {
 
         Connection con = null;
         PreparedStatement st = null;
-
+        int rs2 = 0;
         try {
             con = Database.cpds.getConnection();
             st = con.prepareStatement(sql);
@@ -50,14 +50,15 @@ public class RegisterUser extends HttpServlet {
 
             if (rs == 1) {
 
-                String sqlGrp = "insert into user_group (username, grp_id) values(\'" + uname + "\'," +
-                        "(select id from tbl_group where name=\'" + grp + "\'))";
-                st = con.prepareStatement(sqlGrp);
-                int rs2 = st.executeUpdate();
-
+                for (int i = 0; i < grp.length; i++) {
+                    String sqlGrp = "insert into user_group (username, grp_id) values(\'" + uname + "\'," +
+                            "(select id from tbl_group where name=\'" + grp[i] + "\'))";
+                    st = con.prepareStatement(sqlGrp);
+                    rs2 = st.executeUpdate();
+                }
                 if (rs2 == 1) {
                     LOGGER.info("Registered a new user " + uname + " !");
-                    out.println(rs);
+                    out.println(rs2);
                 }
 
             } else {

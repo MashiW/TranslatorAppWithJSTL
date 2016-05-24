@@ -150,7 +150,8 @@
                             </label>
 
                             <div class="col-md-5">
-                                <select id="slctgrpUpd" name="slctgrpUpd" class="form-control">
+                                <select id="slctgrpUpd" name="slctgrpUpd" class="form-control selectpicker" multiple
+                                        title="Select group(s)">
                                     <option value="0">--Select--</option>
                                 </select>
                                 <label id="errgrpUpd" class="input-group-error form-error"></label>

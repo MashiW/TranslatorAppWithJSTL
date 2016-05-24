@@ -100,15 +100,33 @@ $(document).ready(function () {
             }
         })
     })
+
+    $("#userSearchLink").click(function () {
+
+        var userName = $("#lblSessionUser").val();
+        $.ajax({
+            type: "POST",
+            url: "UserPermission",
+            data: {"userName": userName},
+            success: function (data) {
+                /* var list= data;
+                 $.each(list, function( index, value ) {
+                 alert( index + ": " + value );
+                 });*/
+
+                alert(data[0]);
+            }
+        })
+    })
 })
 
 function operateFormatter(value, row, index) {
     return [
         '<center>',
-        '<a class="edit" href="javascript:void(0)" title="Edit">',
+        '<a class="edit" href="javascript:void(0)" title="Edit" id="linkEditUser">',
         '<i class="glyphicon glyphicon-edit">Edit</i>',
         '</a>&nbsp;&nbsp;&nbsp;&nbsp;',
-        '<a class="delete" href="javascript:void(0)" title="Delete">',
+        '<a class="delete" href="javascript:void(0)" title="Delete" id="linkDeleteUser">',
         '<i class="glyphicon glyphicon-remove">Delete</i>',
         '</a></center>'
     ].join('');
@@ -139,52 +157,3 @@ window.operateEvents = {
     }
 
 };
-
-/*
- * sorting column
- */
-//  sortTable(f,n)
-//  f : 1 ascending order, -1 descending order
-//  n : n-th child(<td>) of <tr>
-/*    function sortTable(f,n){
-
- var rows = $("#table tbody tr").get();
-
- rows.sort(function(a,b){
-
- var A=getVal(a);
- var B=getVal(b);
-
- if(A<B){
- return -1*f;
- }
- if(A>B){
- return 1*f;
- }
- return 0;
- })
-
- function getVal(elm){
- var v =$(elm).children('td').eq(n).text().toUpperCase();
- if($.isNumeric(v)){
- v=parseInt(v,10);
- }
- return v;
- }
- $.each(rows, function (index,row) {
- $("#table").children('tbody').append(row);
- })
- }
-
- var f_sl=1;
- var f_nm=1;
- $("#s1").click(function(){
- f_sl *=1;
- var n = $(this).prevAll().length;
- sortTable(f_sl,n);
- })
- $("#nm").click(function(){
- f_nm *= -1; // toggle the sorting order
- var n = $(this).prevAll().length;
- sortTable(f_nm,n);
- });*/

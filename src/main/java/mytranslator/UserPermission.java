@@ -1,5 +1,7 @@
 package mytranslator;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,7 +22,11 @@ public class UserPermission extends HttpServlet {
 
     private static final Logger LOGGER = LogManager.getLogger(UserPermission.class);
 
+    /**
+     * declaring new arraylist for getting permission list
+     */
     ArrayList<String> permissionlist = new ArrayList<String>();
+    ResultSet rs = null;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
@@ -31,14 +37,27 @@ public class UserPermission extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         permissionlist = getPermissionList(request.getParameter("userName"));
-        out.println(permissionlist);
+
+        JsonObject jsonObjPermission;
+        JsonArray jsonArrayPermission;
+
+        jsonObjPermission = new JsonObject();
+        try {
+            jsonObjPermission.addProperty("permission", rs.getString("name"));
+        } catch (SQLException e) {
+            LOGGER.error("Error in getting value of permissionlist rs");
+        }
+        //out.println(permissionlist);
     }
 
+    /**
+     * method for getting permission list for user = userName
+     */
     public ArrayList<String> getPermissionList(String userName) throws ServletException {
 
         Connection con = null;
-        ResultSet rs = null;
-        PreparedStatement st = null;
+
+        PreparedStatement st;
         ArrayList<String> arrayList = new ArrayList<String>();
 
         String sqlgroup = "SELECT name FROM `permission`\n" +
@@ -49,14 +68,12 @@ public class UserPermission extends HttpServlet {
                 "  WHERE username=\'" + userName + "\'))";
 
         try {
-
             con = Database.cpds.getConnection();
             st = con.prepareStatement(sqlgroup);
             rs = st.executeQuery();
 
             while (rs.next()) {
                 arrayList.add(rs.getString("name"));
-                //out.print(permissionlist);
             }
 
         } catch (SQLException ex) {

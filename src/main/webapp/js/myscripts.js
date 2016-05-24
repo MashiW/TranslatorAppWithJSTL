@@ -20,19 +20,6 @@
 
 $(document).ready(function () {
 
-    /* $("#btnlogin").click(function () {
-
-        var usernm = $("#txtlogin").val();
-        $.ajax({
-            type: "POST",
-            url: "UserPermission",
-     data: {"usernm": usernm},
-     success:function(data){
-     alert(data)
-     }
-        })
-     });*/
-
     $("#usermgtTab").click(function () {
 
         var sessionuser = $("#lblSessionUser").val();
@@ -42,7 +29,6 @@ $(document).ready(function () {
             url: "UserPermission",
             data: {"userName": sessionuser},
             success: function (data) {
-                alert(data);
             }
         })
     });

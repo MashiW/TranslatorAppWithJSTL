@@ -29,6 +29,8 @@ public class LoadGroup extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
+        String[] selectedGrp = request.getParameterValues("slctdgrp");
+
         String sql = "select name from tbl_group";
 
         JsonObject jsonObj;
@@ -53,7 +55,7 @@ public class LoadGroup extends HttpServlet {
             LOGGER.error("Error while loading group list..");
         } finally {
             try {
-                LOGGER.trace("Closing gouplist connection..");
+                LOGGER.trace("Closing grouplist connection..");
                 con.close();
             } catch (SQLException e) {
                 LOGGER.fatal("Error while closing gouplist connection..");
