@@ -101,20 +101,42 @@ $(document).ready(function () {
         })
     })
 
+    /**
+     * edit and delete permission granting function
+     */
+
     $("#userSearchLink").click(function () {
 
         var userName = $("#lblSessionUser").val();
+
         $.ajax({
             type: "POST",
             url: "UserPermission",
+            dataType: "JSON",
             data: {"userName": userName},
             success: function (data) {
-                /* var list= data;
-                 $.each(list, function( index, value ) {
-                 alert( index + ": " + value );
-                 });*/
+                /* alert(data);*/
 
-                alert(data[0]);
+                if (data.indexOf('Edit_user') < 0) {
+                    $(".edit").hide();
+                }
+                if (data.indexOf('Delete_user') < 0) {
+                    $(".delete").hide();
+                }
+                if (data.indexOf('Edit_user') < 0 && data.indexOf('Delete_user') < 0) {
+
+                    $('#table').bootstrapTable('hideColumn', 'Options');
+                }
+
+                /*if(typeof data[i].permission != 'Delete_user'){
+                 if(typeof  data[i].permission != 'Edit_user'){
+                 $('#table').bootstrapTable('hideColumn', 'Options');
+                 }else{
+                 $(".edit").hide();
+                 }
+                 $(".delete").hide();
+                 }*/
+
             }
         })
     })

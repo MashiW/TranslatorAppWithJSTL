@@ -260,6 +260,7 @@ $(document).ready(function () {
             dataType: 'JSON',
             type: 'POST',
             success: function (data) {
+                alert(data);
 
                 var slctgrpUp = $("#slctgrpUpd"), option = "";
                 slctgrpUp.empty();

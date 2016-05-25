@@ -50,6 +50,7 @@ public class LoadGroup extends HttpServlet {
                 jsonArray.add(jsonObj);
             }
             out.println(jsonArray);
+            LOGGER.trace(jsonArray);
 
         } catch (Exception e) {
             LOGGER.error("Error while loading group list..");

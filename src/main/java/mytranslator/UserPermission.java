@@ -26,7 +26,6 @@ public class UserPermission extends HttpServlet {
      * declaring new arraylist for getting permission list
      */
     ArrayList<String> permissionlist = new ArrayList<String>();
-    ResultSet rs = null;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
@@ -38,16 +37,17 @@ public class UserPermission extends HttpServlet {
 
         permissionlist = getPermissionList(request.getParameter("userName"));
 
-        JsonObject jsonObjPermission;
         JsonArray jsonArrayPermission;
+        jsonArrayPermission = new JsonArray();
 
-        jsonObjPermission = new JsonObject();
         try {
-            jsonObjPermission.addProperty("permission", rs.getString("name"));
-        } catch (SQLException e) {
-            LOGGER.error("Error in getting value of permissionlist rs");
+            for (int i = 0; i <= permissionlist.size(); i++) {
+                jsonArrayPermission.add(permissionlist.get(i));
+            }
+        } catch (Exception e) {
+            LOGGER.error("Error in getting value of permissionlist");
         }
-        //out.println(permissionlist);
+        out.println(jsonArrayPermission);
     }
 
     /**
@@ -56,8 +56,9 @@ public class UserPermission extends HttpServlet {
     public ArrayList<String> getPermissionList(String userName) throws ServletException {
 
         Connection con = null;
-
+        ResultSet rs = null;
         PreparedStatement st;
+
         ArrayList<String> arrayList = new ArrayList<String>();
 
         String sqlgroup = "SELECT name FROM `permission`\n" +
