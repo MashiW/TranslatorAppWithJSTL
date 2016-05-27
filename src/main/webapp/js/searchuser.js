@@ -140,6 +140,23 @@ $(document).ready(function () {
             }
         })
     })
+
+    $.ajax({
+        type: 'POST',
+        url: 'LoadGroup',
+        dataType: 'JSON',
+        success: function (data) {
+
+            var slctgrpUp = $("#slctgrpUpd"), option = "";
+            slctgrpUp.empty();
+
+            for (var i = 0; i < data.length; i++) {
+                option = option + "<option value='" + data[i].groupNm + "'>" + data[i].groupNm + "</option>";
+
+            }
+            slctgrpUp.append(option);
+        }
+    })
 })
 
 function operateFormatter(value, row, index) {
@@ -165,12 +182,31 @@ window.operateEvents = {
         $('#txtlstnmUpd').val(objc["usrln"]);
         $('#dateUpdt').val(objc["usrdob"]);
         $('#txtphoneUpd').val(objc["usrphone"]);
-        $('#slctgrpUpd').val(objc["usrgrp"]);
+        /*$('#slctgrpUpd').val(objc["usrgrp"]);*/
         $('#slctcountryUpd').val(objc["usrcntry"]);
         $("#slctcityUpd").val(objc["usrcity"]);
         $('#txtemailUpd').val(objc["usremail"]);
+
         $('#usrUpdateModal').modal('show');
+
+        /*$.ajax({
+         type: 'POST',
+         url: 'LoadGroup',
+         dataType: 'JSON',
+         success: function (data) {
+
+         var slctgrpUp = $("#slctgrpUpd"), option = "";
+         slctgrpUp.empty();
+
+         for (var i = 0; i < data.length; i++) {
+         option = option + "<option value='" + data[i].groupNm + "'>" + data[i].groupNm + "</option>";
+
+         }
+         slctgrpUp.append(option);
+         }
+         })*/
     },
+
     'click .delete': function (e, value, row, index) {
         var js = JSON.stringify(row);
         var obj = JSON.parse(js);

@@ -254,7 +254,8 @@ $(document).ready(function () {
     /*
      * loading group list
      */
-    $("#linkEditUser").click(function () {
+    /* $(".edit").click(function () {
+     alert("hfje");
         $.ajax({
             url: 'LoadGroup',
             dataType: 'JSON',
@@ -265,12 +266,12 @@ $(document).ready(function () {
                 var slctgrpUp = $("#slctgrpUpd"), option = "";
                 slctgrpUp.empty();
 
-                for (var x = 0; x < data.length; x++) {
-                    option = option + "<option value='" + data[x].group + "'>" + data[x].group + "</option>";
+     for (var G = 0; G < data.length; G++) {
+     option = option + "<option value='" + data[G].groupNm + "'>" + data[G].groupNm + "</option>";
                 }
                 slctgrpUp.append(option);
 
-                /*$.ajax({
+     /!*$.ajax({
                  url:'LoadGroup',
                  dataType: 'JSON',
                  type:'POST',
@@ -284,10 +285,10 @@ $(document).ready(function () {
                  }
 
                  }
-                 })*/
+     })*!/
             }
         })
-    })
+     })*/
 
 
     /*

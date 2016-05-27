@@ -29,7 +29,7 @@ public class LoadGroup extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
-        String[] selectedGrp = request.getParameterValues("slctdgrp");
+        // String[] selectedGrp = request.getParameterValues("slctdgrp");
 
         String sql = "select name from tbl_group";
 
@@ -46,20 +46,20 @@ public class LoadGroup extends HttpServlet {
 
             while (rs.next()) {
                 jsonObj = new JsonObject();
-                jsonObj.addProperty("group", rs.getString("name"));
+                jsonObj.addProperty("groupNm", rs.getString("name"));
                 jsonArray.add(jsonObj);
             }
             out.println(jsonArray);
-            LOGGER.trace(jsonArray);
+            //LOGGER.error(jsonArray);
 
         } catch (Exception e) {
-            LOGGER.error("Error while loading group list..");
+            LOGGER.error("Error while loading group list.." + e);
         } finally {
             try {
                 LOGGER.trace("Closing grouplist connection..");
                 con.close();
             } catch (SQLException e) {
-                LOGGER.fatal("Error while closing gouplist connection..");
+                LOGGER.fatal("Error while closing gouplist connection.." + e);
                 e.printStackTrace();
             }
         }

@@ -24,6 +24,46 @@
             <table id="table">
 
             </table>
+            <div id="pagination" class="text-center">
+                <script>
+                    var pag = $('#pagination').simplePaginator({
+                        // options here
+
+                        // the number of total pages
+                        totalPages: 7,
+
+                        // maximum of visible buttons
+                        maxButtonsVisible: 5,
+
+                        // page selected
+                        currentPage: 1,
+
+                        // text labels for buttons
+                        nextLabel: 'next',
+                        prevLabel: 'prev',
+                        firstLabel: 'first',
+                        lastLabel: 'last',
+
+                        // specify if the paginator click in the currentButton
+                        clickCurrentPage: true,
+
+                        // called when a page is changed.
+                        pageChange: function (page) {
+                            console.log(page)
+                        }
+
+
+                        /*     // set totalPages option
+                         pag.simplePaginator('setTotalPages', 10);
+
+                         // go to page 3
+                         pag.simplePaginator('changePage', 3);*/
+
+                    });
+                </script>
+
+
+            </div>
         </div>
     </div>
 </div>
@@ -145,16 +185,15 @@
 
                         <!--User group-->
                         <div class="form-group required">
-                            <label class="col-md-5 control-label" for="slctgrpUpd">
-                                <fmt:message key="searchform.label.selectgrp"></fmt:message>
-                            </label>
+                            <label class="col-md-5 control-label" for="slctgrpUpd"><fmt:message
+                                    key="addform.label.selectgroup"></fmt:message></label>
 
                             <div class="col-md-5">
                                 <select id="slctgrpUpd" name="slctgrpUpd" class="form-control selectpicker" multiple
                                         title="Select group(s)">
                                     <option value="0">--Select--</option>
                                 </select>
-                                <label id="errgrpUpd" class="input-group-error form-error"></label>
+                                <label id="grperrUpd" class="input-group-error form-error"></label>
                             </div>
                         </div>
 

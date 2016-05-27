@@ -221,21 +221,22 @@ $(document).ready(function () {
      * loading group list
      */
 
+
     $.ajax({
+        type: 'POST',
         url: 'LoadGroup',
         dataType: 'JSON',
-        type: 'POST',
         success: function (data) {
 
             var slctgrp = $("#slctgrp"), option = "";
             slctgrp.empty();
 
             for (var i = 0; i < data.length; i++) {
-                option = option + "<option value='" + data[i].group + "'>" + data[i].group + "</option>";
+                option = option + "<option value='" + data[i].groupNm + "'>" + data[i].groupNm + "</option>";
             }
             slctgrp.append(option);
-        }
-    })
+            }
+    });
 
 
 

@@ -1,21 +1,21 @@
 //
 //*Swapping translating text*/
 //
-        function swapText() {
+function swapText() {
 
-        var x = document.getElementById("fromText").value;
-        var y = document.getElementById("toText").value;
+    var x = document.getElementById("fromText").value;
+    var y = document.getElementById("toText").value;
 
-         document.getElementById("toText").value =x;
-         document.getElementById("fromText").value =y;
-        }
+    document.getElementById("toText").value = x;
+    document.getElementById("fromText").value = y;
+}
 
 //
 /*Login modal display in page load */
 //
-            $(function() {
-            $("#loginModal").modal('show');
-        });
+$(function () {
+    $("#loginModal").modal('show');
+});
 
 
 $(document).ready(function () {

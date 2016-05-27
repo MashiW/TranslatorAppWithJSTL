@@ -41,11 +41,11 @@ public class UserPermission extends HttpServlet {
         jsonArrayPermission = new JsonArray();
 
         try {
-            for (int i = 0; i <= permissionlist.size(); i++) {
+            for (int i = 0; i < permissionlist.size(); i++) {
                 jsonArrayPermission.add(permissionlist.get(i));
             }
         } catch (Exception e) {
-            LOGGER.error("Error in getting value of permissionlist");
+            LOGGER.error("Error in getting value of permissionlist. " + e);
         }
         out.println(jsonArrayPermission);
     }
