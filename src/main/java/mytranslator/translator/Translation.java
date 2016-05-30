@@ -1,5 +1,6 @@
-package mytranslator;
+package mytranslator.translator;
 
+import mytranslator.PropertyReader;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;

@@ -1,5 +1,6 @@
-package mytranslator;
+package mytranslator.usermanagement;
 
+import mytranslator.databasemanagement.Database;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -44,7 +45,7 @@ public class RegisterUser extends HttpServlet {
         PreparedStatement st = null;
         int rs2 = 0;
         try {
-            con = Database.cpds.getConnection();
+            con = Database.getDataSource().getConnection();
             st = con.prepareStatement(sql);
             int rs = st.executeUpdate();
 

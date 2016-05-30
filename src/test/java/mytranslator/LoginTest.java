@@ -1,5 +1,7 @@
 package mytranslator;
 
+import mytranslator.databasemanagement.Database;
+import mytranslator.login.Login;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;

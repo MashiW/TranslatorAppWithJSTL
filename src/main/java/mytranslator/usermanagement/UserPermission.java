@@ -1,7 +1,7 @@
-package mytranslator;
+package mytranslator.usermanagement;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import mytranslator.databasemanagement.Database;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -9,7 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -44,7 +43,8 @@ public class UserPermission extends HttpServlet {
             for (int i = 0; i < permissionlist.size(); i++) {
                 jsonArrayPermission.add(permissionlist.get(i));
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             LOGGER.error("Error in getting value of permissionlist. " + e);
         }
         out.println(jsonArrayPermission);
@@ -69,7 +69,7 @@ public class UserPermission extends HttpServlet {
                 "  WHERE username=\'" + userName + "\'))";
 
         try {
-            con = Database.cpds.getConnection();
+            con = Database.getDataSource().getConnection();
             st = con.prepareStatement(sqlgroup);
             rs = st.executeQuery();
 
@@ -78,7 +78,7 @@ public class UserPermission extends HttpServlet {
             }
 
         } catch (SQLException ex) {
-            LOGGER.error("Error..");
+            LOGGER.error("Error.. " +ex);
 
         } finally {
             try {

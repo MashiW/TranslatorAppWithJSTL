@@ -1,5 +1,8 @@
-package mytranslator;
+package mytranslator.login;
 
+import mytranslator.usermanagement.UserPermission;
+import mytranslator.databasemanagement.Database;
+import mytranslator.translator.Translation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -101,7 +104,7 @@ public class Login extends HttpServlet {
         boolean result = false;
 
         try {
-            con = Database.cpds.getConnection();
+            con = Database.getDataSource().getConnection();
             st = con.prepareStatement(sql);
             rs = st.executeQuery(sql);
             if (rs.first()) {

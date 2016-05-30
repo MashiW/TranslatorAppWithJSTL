@@ -24,6 +24,7 @@
     <script src="js/myscripts.js"></script>
     <script src="js/valiadateinput.js"></script>
     <script src="js/updateuser.js"></script>
+    <script src="js/pagination.js"></script>
 
 
 </head>
@@ -119,7 +120,7 @@
                         <c:choose>
                             <c:when test="${pers == 'Translate'}">
 
-                                <%@include file="logintranslate.jsp" %>
+                                <%@include file="translatorpages/logintranslate.jsp" %>
 
                             </c:when>
                         </c:choose>
@@ -131,7 +132,7 @@
                         <c:choose>
                             <c:when test="${pers == 'Add_user'}">
 
-                                <%@include file="adduser.jsp" %>
+                                <%@include file="userpages/adduser.jsp" %>
 
                             </c:when>
                         </c:choose>
@@ -143,7 +144,7 @@
                         <c:choose>
                             <c:when test="${pers == 'Search_user'}">
 
-                                <%@include file="searchuser.jsp" %>
+                                <%@include file="userpages/searchuser.jsp" %>
 
                             </c:when>
                         </c:choose>

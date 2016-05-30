@@ -9,55 +9,59 @@
     <display-name>Archetype Created Web Application</display-name>
 
     <listener>
-        <listener-class>mytranslator.LoginListener</listener-class>
+        <listener-class>mytranslator.login.LoginListener</listener-class>
     </listener>
     <servlet>
         <servlet-name>login</servlet-name>
-        <servlet-class>mytranslator.Login</servlet-class>
+        <servlet-class>mytranslator.login.Login</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>translate</servlet-name>
-        <servlet-class>mytranslator.TranslateServlet</servlet-class>
+        <servlet-class>mytranslator.translator.TranslateServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>usernameValidate</servlet-name>
-        <servlet-class>mytranslator.UsernameValidate</servlet-class>
+        <servlet-class>mytranslator.usermanagement.UsernameValidate</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>logout</servlet-name>
-        <servlet-class>mytranslator.LogoutServlet</servlet-class>
+        <servlet-class>mytranslator.login.LogoutServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>register</servlet-name>
-        <servlet-class>mytranslator.RegisterUser</servlet-class>
+        <servlet-class>mytranslator.usermanagement.RegisterUser</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>searchUser</servlet-name>
-        <servlet-class>mytranslator.SearchUser</servlet-class>
+        <servlet-class>mytranslator.usermanagement.SearchUser</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>updateUser</servlet-name>
-        <servlet-class>mytranslator.UpdateUser</servlet-class>
+        <servlet-class>mytranslator.usermanagement.UpdateUser</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>deleteUser</servlet-name>
-        <servlet-class>mytranslator.DeleteUser</servlet-class>
+        <servlet-class>mytranslator.usermanagement.DeleteUser</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>loadCity</servlet-name>
-        <servlet-class>mytranslator.LoadCity</servlet-class>
+        <servlet-class>mytranslator.usermanagement.LoadCity</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>typeaheadUsername</servlet-name>
-        <servlet-class>mytranslator.TypeaheadUsername</servlet-class>
+        <servlet-class>mytranslator.usermanagement.TypeaheadUsername</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>loadGroup</servlet-name>
-        <servlet-class>mytranslator.LoadGroup</servlet-class>
+        <servlet-class>mytranslator.usermanagement.LoadGroup</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>userPermission</servlet-name>
-        <servlet-class>mytranslator.UserPermission</servlet-class>
+        <servlet-class>mytranslator.usermanagement.UserPermission</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>paginationTable</servlet-name>
+        <servlet-class>mytranslator.usermanagement.PaginationTable</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>userPermission</servlet-name>
         <url-pattern>/UserPermission</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>paginationTable</servlet-name>
+        <url-pattern>/PaginationTable</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>logout</servlet-name>

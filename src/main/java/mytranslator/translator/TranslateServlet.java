@@ -1,4 +1,4 @@
-package mytranslator;
+package mytranslator.translator;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

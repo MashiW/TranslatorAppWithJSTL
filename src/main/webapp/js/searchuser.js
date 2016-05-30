@@ -10,11 +10,11 @@ $(document).ready(function () {
         type: "POST",
         url: "SearchUser",
         dataType: "json",
-        data: {"usrnm": usrnm},
+        data: {"usrnm": usrnm, "initPage": "1"},
         success: function (result) {
 
             $('#table').bootstrapTable({
-                pagination: true,
+                pagination: false,
                 pageSize: 10,
                 pageList: [10, 25, 50, 100, 200],
                 search: false,

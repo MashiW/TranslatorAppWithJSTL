@@ -1,13 +1,10 @@
-package mytranslator;
+package mytranslator.databasemanagement;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import com.mchange.v2.c3p0.DataSources;
-import com.mchange.v2.c3p0.DriverManagerDataSource;
+import mytranslator.PropertyReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.sql.DataSource;
-import java.beans.PropertyVetoException;
 import java.sql.*;
 
 public class Database {
@@ -18,7 +15,7 @@ public class Database {
      * Database connection class
      */
     private static Connection conn;
-    static ComboPooledDataSource cpds = new ComboPooledDataSource();
+    private static ComboPooledDataSource cpds = new ComboPooledDataSource();
     private static PropertyReader propObj = new PropertyReader();
 
 

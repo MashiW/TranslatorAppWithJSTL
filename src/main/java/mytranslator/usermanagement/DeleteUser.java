@@ -1,7 +1,6 @@
-package mytranslator;
+package mytranslator.usermanagement;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import mytranslator.databasemanagement.Database;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,59 +12,52 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class LoadCity extends HttpServlet {
+public class DeleteUser extends HttpServlet {
 
-    private static final Logger LOGGER = LogManager.getLogger(LoadCity.class);
+    private static final Logger LOGGER = LogManager.getLogger(DeleteUser.class);
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
 
-        LOGGER.trace("Invoking to LoadCity servlet..");
+        LOGGER.trace("Invoked to DeleteUser Servlet..");
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
-        String ldcountry = request.getParameter("country");
+        String usrname = request.getParameter("val");
 
-        String sql = "select city from city where country=\'" + ldcountry + "\';";
+        String sql = "delete from user where username=\'" + usrname + "\';";
 
-        JsonObject jsonObj;
-        JsonArray jsonArray = new JsonArray();
         Connection con = null;
         PreparedStatement st = null;
-        ResultSet rs = null;
 
         try {
-            con = Database.cpds.getConnection();
+            con = Database.getDataSource().getConnection();
             st = con.prepareStatement(sql);
-            rs = st.executeQuery();
+            int rs = st.executeUpdate();
 
-            while (rs.next()) {
-                jsonObj = new JsonObject();
-                jsonObj.addProperty("cityName", rs.getString("city"));
-                jsonArray.add(jsonObj);
+            if (rs == 1) {
+                out.println(rs);
             }
-            out.println(jsonArray);
 
-        } catch (Exception e) {
-            LOGGER.error("Error while loading city list..");
+        } catch (Exception ex) {
+            LOGGER.error("Error in user deletion..", ex);
         } finally {
             try {
-                LOGGER.trace("Closing loadCity connection..");
+                LOGGER.trace("Closing connection..");
                 con.close();
             } catch (SQLException e) {
-                LOGGER.fatal("Error while closing loadCity connection..");
+                LOGGER.fatal("Error while closing connection..");
                 e.printStackTrace();
-            }/*
+            }
             try {
                 LOGGER.trace("Closing Prepared statement..");
                 st.close();
             } catch (SQLException e) {
                 LOGGER.fatal("Error while closing prepared statement !", e);
-            }*/
+            }
         }
     }
 }

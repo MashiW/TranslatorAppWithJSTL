@@ -1,6 +1,9 @@
-package mytranslator;
+package mytranslator.usermanagement;
+
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import mytranslator.databasemanagement.Database;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,46 +18,49 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TypeaheadUsername extends HttpServlet {
+public class LoadGroup extends HttpServlet {
 
-    private static final Logger LOGGER = LogManager.getLogger(TypeaheadUsername.class);
+    private static final Logger LOGGER = LogManager.getLogger(LoadGroup.class);
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
 
-        LOGGER.trace("Invoking to TypeaheadUSername servlet..");
+        LOGGER.trace("Invoking to LoadGroup servlet..");
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
-        String username = request.getParameter("usrnm");
-        String sql = "select * from user where username LIKE \'%" + username + "%\';";
+        // String[] selectedGrp = request.getParameterValues("slctdgrp");
 
+        String sql = "select name from tbl_group";
 
+        JsonObject jsonObj;
         JsonArray jsonArray = new JsonArray();
         Connection con = null;
-        PreparedStatement st;
-        ResultSet rs;
+        PreparedStatement st = null;
+        ResultSet rs = null;
 
         try {
-
-            con = Database.cpds.getConnection();
+            con = Database.getDataSource().getConnection();
             st = con.prepareStatement(sql);
             rs = st.executeQuery();
 
             while (rs.next()) {
-                jsonArray.add(rs.getString("username"));
+                jsonObj = new JsonObject();
+                jsonObj.addProperty("groupNm", rs.getString("name"));
+                jsonArray.add(jsonObj);
             }
             out.println(jsonArray);
+            //LOGGER.error(jsonArray);
 
         } catch (Exception e) {
-            LOGGER.error("Error in username typeahed loading..");
+            LOGGER.error("Error while loading group list.." + e);
         } finally {
             try {
-                LOGGER.trace("Closing typeaheadUsrname connection..");
+                LOGGER.trace("Closing grouplist connection..");
                 con.close();
             } catch (SQLException e) {
-                LOGGER.fatal("Error while closing typeaheadUsrname connection..");
+                LOGGER.fatal("Error while closing gouplist connection.." + e);
                 e.printStackTrace();
             }
         }

@@ -1,7 +1,8 @@
-package mytranslator;
+package mytranslator.usermanagement;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import mytranslator.databasemanagement.Database;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -29,8 +30,12 @@ public class SearchUser extends HttpServlet {
         String sql;
 
         String params = request.getParameter("usrnm");
+        String s=request.getParameter("initPage");
+        LOGGER.error(params);
+        LOGGER.error(s);
+        int page = Integer.parseInt(s);
 
-        sql = "select * from user where username LIKE \'%" + params + "%\';";
+        sql = "select * from user where username LIKE \'%" + params + "%\' LIMIT 10 OFFSET "+(page-1)+";";
 
         JsonObject jsonObj;
         JsonArray jsonArray = new JsonArray();
@@ -38,10 +43,10 @@ public class SearchUser extends HttpServlet {
         PreparedStatement st;
         ResultSet rs;
         ResultSet rs2;
-        ResultSet rs3;
+       // ResultSet rs3;
 
         try {
-            con = Database.cpds.getConnection();
+            con = Database.getDataSource().getConnection();
             st = con.prepareStatement(sql);
             rs = st.executeQuery();
 

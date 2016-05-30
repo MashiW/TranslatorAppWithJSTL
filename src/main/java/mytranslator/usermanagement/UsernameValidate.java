@@ -1,5 +1,6 @@
-package mytranslator;
+package mytranslator.usermanagement;
 
+import mytranslator.databasemanagement.Database;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -34,7 +35,7 @@ public class UsernameValidate extends HttpServlet {
         PreparedStatement st = null;
 
         try {
-            con = Database.cpds.getConnection();
+            con = Database.getDataSource().getConnection();
             st = con.prepareStatement(sql);
             rs = st.executeQuery(sql);
 

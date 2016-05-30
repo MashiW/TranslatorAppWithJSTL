@@ -25,42 +25,6 @@
 
             </table>
             <div id="pagination" class="text-center">
-                <script>
-                    var pag = $('#pagination').simplePaginator({
-                        // options here
-
-                        // the number of total pages
-                        totalPages: 7,
-
-                        // maximum of visible buttons
-                        maxButtonsVisible: 5,
-
-                        // page selected
-                        currentPage: 1,
-
-                        // text labels for buttons
-                        nextLabel: 'next',
-                        prevLabel: 'prev',
-                        firstLabel: 'first',
-                        lastLabel: 'last',
-
-                        // specify if the paginator click in the currentButton
-                        clickCurrentPage: true,
-
-                        // called when a page is changed.
-                        pageChange: function (page) {
-                            console.log(page)
-                        }
-
-
-                        /*     // set totalPages option
-                         pag.simplePaginator('setTotalPages', 10);
-
-                         // go to page 3
-                         pag.simplePaginator('changePage', 3);*/
-
-                    });
-                </script>
 
 
             </div>

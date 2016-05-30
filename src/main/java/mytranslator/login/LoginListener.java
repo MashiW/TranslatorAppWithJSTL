@@ -1,6 +1,7 @@
-package mytranslator;
+package mytranslator.login;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import mytranslator.databasemanagement.Database;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -39,7 +40,7 @@ public class LoginListener implements ServletContextListener {
     public void contextDestroyed(ServletContextEvent arg1) {
 
         LOGGER.trace("Closing connection pool..");
-        Database.cpds.close();
+        Database.getDataSource().close();
     }
 
 }
