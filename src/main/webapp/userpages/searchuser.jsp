@@ -25,8 +25,8 @@
 
             </table>
             <div id="pagination" class="text-center">
-
-
+            </div>
+            <div id="pagination2" class="text-center">
             </div>
         </div>
     </div>

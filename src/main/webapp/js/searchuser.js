@@ -87,19 +87,107 @@ $(document).ready(function () {
         })
     })
 
+    var pag2 = $('#pagination2').simplePaginator({
+
+        // the number of total pages
+        totalPages: 7,
+
+        // maximum of visible buttons
+        maxButtonsVisible: 5,
+
+        // page selected
+        currentPage: 1,
+
+        // text labels for buttons
+        nextLabel: 'next',
+        prevLabel: 'prev',
+        firstLabel: 'first',
+        lastLabel: 'last',
+
+        // specify if the paginator click in the currentButton
+        clickCurrentPage: true,
+
+        // called when a page is changed.
+        pageChange: function (page) {
+
+            $.ajax({
+                type:'POST',
+                url:'SearchUser',
+                dataType: "json",
+                data:{"usrnm": $("#txtSrchun").val(), "initPage": page},
+                success: function(data){
+
+                    $('#table').bootstrapTable('load', data);
+                }
+            })
+        }
+    });
+
+    /**
+     * Pagination function for user Search
+     */
 
     $("#btnSrchUser").click(function () {
 
-        $.ajax({
-            type: "POST",
-            url: "SearchUser",
-            dataType: "json",
-            data: {"usrnm": $("#txtSrchun").val()},
-            success: function (data) {
-                $('#table').bootstrapTable('load', data);
-            }
-        })
+        /**
+        * if search user name is given
+        */
+
+        if($('#txtSrchun').val().length>0){
+
+            $('#pagination').hide();
+            $('#pagination2').show();
+
+            /**
+            * Loading details of given user
+            */
+
+            $.ajax({
+                type:'POST',
+                url:'SearchUser',
+                dataType: "json",
+                data:{"usrnm": $("#txtSrchun").val(), "initPage": "1"},
+                success: function(data){
+
+                    $('#table').bootstrapTable('load', data);
+                }
+            })
+
+            /**
+             *Setting the number of pages according to the number of records
+             */
+
+            $.ajax({
+                type:'POST',
+                url:'SearchPagination',
+                data:{"usrnm": $("#txtSrchun").val()},
+                success: function(recCount){
+
+                    pag2.simplePaginator('setTotalPages',Math.ceil(recCount/10));
+                }
+            })
+
+            /**
+            * if user name is not specifeid ( generic search)
+            */
+
+        }else{
+            $('#pagination').show();
+            $('#pagination2').hide();
+
+            $.ajax({
+                type:'POST',
+                url:'SearchUser',
+                dataType: "json",
+                data:{"initPage":"1"},
+                success: function(data){
+
+                    $('#table').bootstrapTable('load', data);
+                }
+            })
+        }
     })
+
 
     /**
      * edit and delete permission granting function

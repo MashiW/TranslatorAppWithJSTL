@@ -61,7 +61,11 @@
     </servlet>
     <servlet>
         <servlet-name>paginationTable</servlet-name>
-        <servlet-class>mytranslator.usermanagement.PaginationTable</servlet-class>
+        <servlet-class>mytranslator.pagination.PaginationTable</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>searchPagination</servlet-name>
+        <servlet-class>mytranslator.pagination.SearchPagination</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>paginationTable</servlet-name>
         <url-pattern>/PaginationTable</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>searchPagination</servlet-name>
+        <url-pattern>/SearchPagination</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>logout</servlet-name>

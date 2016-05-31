@@ -31,11 +31,14 @@ public class SearchUser extends HttpServlet {
 
         String params = request.getParameter("usrnm");
         String s=request.getParameter("initPage");
-        LOGGER.error(params);
-        LOGGER.error(s);
+
         int page = Integer.parseInt(s);
 
-        sql = "select * from user where username LIKE \'%" + params + "%\' LIMIT 10 OFFSET "+(page-1)+";";
+        if(params==null){
+            sql = "select * from user LIMIT 10 OFFSET "+(page-1)+";";
+        }else{
+            sql = "select * from user where username LIKE \'%" + params + "%\' LIMIT 10 OFFSET "+(page-1)+";";
+        }
 
         JsonObject jsonObj;
         JsonArray jsonArray = new JsonArray();
@@ -43,7 +46,6 @@ public class SearchUser extends HttpServlet {
         PreparedStatement st;
         ResultSet rs;
         ResultSet rs2;
-       // ResultSet rs3;
 
         try {
             con = Database.getDataSource().getConnection();
@@ -72,7 +74,7 @@ public class SearchUser extends HttpServlet {
             out.println(jsonArray);
 
         } catch (SQLException ex) {
-            LOGGER.error("Error in username validate method..", ex);
+            LOGGER.error("Error in user details sql..", ex);
         } finally {
             try {
                 LOGGER.trace("Closing loadCity connection..");

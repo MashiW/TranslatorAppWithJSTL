@@ -1,4 +1,4 @@
-package mytranslator.usermanagement;
+package mytranslator.pagination;
 
 import mytranslator.databasemanagement.Database;
 import org.apache.logging.log4j.LogManager;

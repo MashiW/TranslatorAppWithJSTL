@@ -1,17 +1,21 @@
-
 /*
-* pagination function
-*/
+ * default pagination function
+ */
 
-    $(document).ready(function(){
+$(document).ready(function () {
 
-        $.ajax({
-            type:'POST',
-            url:'PaginationTable',
-            success: function(recCount){
-                pag.simplePaginator('setTotalPages',Math.ceil(recCount/10));
-            }
-        })
+    /**
+     * ajax function for getting records count
+     */
+    $("#pagination2").hide();
+
+    $.ajax({
+        type: 'POST',
+        url: 'PaginationTable',
+        success: function (recCount) {
+            pag.simplePaginator('setTotalPages', Math.ceil(recCount / 10));
+        }
+    })
 
     var pag = $('#pagination').simplePaginator({
         // options here
@@ -40,24 +44,17 @@
         pageChange: function (page) {
 
             $.ajax({
-                type:'POST',
-                url:'SearchUser',
-                /*dataType: 'JSON',*/
-                data:{"initPage":page},
-                success: function(data){
-                    $("#table").bootstrapTable('load',data);
-                    alert(data);
-                    pag.simplePaginator('changePage', pgNumber);
+                type: 'POST',
+                url: 'SearchUser',
+                dataType: "json",
+                data: {"initPage": page},
+                success: function (data) {
+                    $('#table').bootstrapTable('load', data);
+
+
                 }
             })
         }
-
-        // set totalPages option
-        /* pag.simplePaginator('setTotalPages', 10);
-
-         // go to page 3
-         pag.simplePaginator('changePage', 3);*/
-
     });
 })
 

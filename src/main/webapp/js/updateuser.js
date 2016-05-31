@@ -252,46 +252,6 @@ $(document).ready(function () {
 
 
     /*
-     * loading group list
-     */
-    /* $(".edit").click(function () {
-     alert("hfje");
-        $.ajax({
-            url: 'LoadGroup',
-            dataType: 'JSON',
-            type: 'POST',
-            success: function (data) {
-                alert(data);
-
-                var slctgrpUp = $("#slctgrpUpd"), option = "";
-                slctgrpUp.empty();
-
-     for (var G = 0; G < data.length; G++) {
-     option = option + "<option value='" + data[G].groupNm + "'>" + data[G].groupNm + "</option>";
-                }
-                slctgrpUp.append(option);
-
-     /!*$.ajax({
-                 url:'LoadGroup',
-                 dataType: 'JSON',
-                 type:'POST',
-                 data:{"slctdgrp":slctgrpUp},
-                 success:function(data){
-                 if(slctgrpUp.value.match(data[x])){
-                 for (var y = 0; y < data.length; y++) {
-                 option = option + "<option selected='" + data[y].group + "'>" + data[y].group + "</option>";
-                 }
-                 slctgrpUp.append(option);
-                 }
-
-                 }
-     })*!/
-            }
-        })
-     })*/
-
-
-    /*
      * Loading city function
      */
 
