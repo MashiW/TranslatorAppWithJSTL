@@ -14,7 +14,7 @@
             crossorigin="anonymous"></script>
     <script src="js/myscripts.js"></script>
 
-    <title>Login</title>
+    <title>Home</title>
 
 </head>
 
@@ -66,11 +66,11 @@
                                 <div class="form-group">
                                     <label><span class="glyphicon glyphicon-lock"></span>&nbsp;
                                         <fmt:message key="login.modal.passwd.label"></fmt:message></label>
-                                    <input type="password" class="form-control" name="txtPw"
+                                    <input type="password" class="form-control" name="txtPw" id="txtPw"
                                            placeholder="Enter password" required>
                                 </div>
                                 <div>
-                                    <p style="color:red; font-size:14px; font-style:Italic; ">
+                                    <label id="loginError" style="color:red; font-size:14px; font-style:Italic; ">
                                         <strong>
                                             <%
                                                 String err = (String) request.getAttribute("errorMessage");
@@ -81,7 +81,7 @@
                                             </c:if>
 
                                         </strong>
-                                    </p>
+                                    </label>
                                 </div>
 
                                 <div class="modal-footer">

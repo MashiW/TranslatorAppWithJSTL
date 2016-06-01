@@ -12,4 +12,9 @@
             <class name="mytranslator.TranslatorTest"/>
         </classes>
     </test>
+    <test name="test4">
+        <classes>
+            <class name="mytranslator.seleniumtests.logintestsele.LoginTest"/>
+        </classes>
+    </test>
 </suite>	

@@ -13,9 +13,7 @@ import java.sql.SQLException;
 
 import static org.testng.Assert.fail;
 
-/**
- * Created by hsenid on 3/29/16.
- */
+
 public class LoginTest {
 
     Login validate = new Login();
@@ -54,7 +52,9 @@ public class LoginTest {
         //Database db = new Database(dburl, database, dbUname, dbPasswd);
         // Database.connectDatabase(dburl, database, dbUname, dbPasswd);
         Connection conn = Database.getConn();
-        String sql = "INSERT INTO tbl_user(usrName, usrPass) VALUES('abc',md5('123'));";
+        String sql = "INSERT INTO tbl_user" +
+                "(username, usr_pass, first_name, last_name, dob, phone_no, country, city_id, email) " +
+                "VALUES('abc', md5('123'), 'abc', 'abc', '1990-06-06', '23698521478', 'Japan', '10', 'ssss@gml.com');";
 
         try {
             PreparedStatement sta = conn.prepareStatement(sql);
@@ -167,7 +167,7 @@ public class LoginTest {
     public void conClose() {
         Connection conn = Database.getConn();
 
-        String sql = "DELETE FROM tbl_user WHERE usrName='abc' AND usrPass=md5('123');";
+        String sql = "DELETE FROM tbl_user WHERE username='abc' AND usr_pass=md5('123');";
         if (conn != null) {
             try {
                 PreparedStatement sta = conn.prepareStatement(sql);
