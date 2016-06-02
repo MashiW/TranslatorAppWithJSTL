@@ -1,11 +1,12 @@
-package mytranslator.seleniumtests.logintestsele;
+package mytranslator.seleniumtests.logintest;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by hsenid on 6/1/16.
@@ -13,6 +14,15 @@ import org.testng.annotations.Test;
 public class LoginTest {
 
     private WebDriver driver;
+
+    @BeforeMethod
+    public void initDriver() {
+
+        driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.get("http://localhost:8080/");
+    }
+
 
     @DataProvider(name = "test")
     public Object[][] users() {
@@ -28,23 +38,22 @@ public class LoginTest {
         };
     }
 
+
     @Test(dataProvider = "test")
-    public void initDriver(String na, String pw, String expected) throws Exception {
+    public void startTest(String na, String pw, String expected) throws Exception {
 
-        driver = new ChromeDriver();
-
-        driver.get("http://localhost:8080/");
-        Thread.sleep(2000);
         driver.findElement(By.id("txtlogin")).sendKeys(na); //username input field
-        Thread.sleep(2000);
         driver.findElement(By.id("txtPw")).sendKeys(pw); // password input field
-        Thread.sleep(2000);
         driver.findElement(By.id("btnlogin")).click(); // login button
-        Thread.sleep(2000);
 
-        String actual=driver.getTitle(); // title of the page
-        Thread.sleep(2000);
+        String actual = driver.getTitle(); // title of the page
 
         Assert.assertEquals(actual, expected);
+    }
+
+    @AfterMethod
+    public void endDriver(){
+
+        driver.quit();
     }
 }

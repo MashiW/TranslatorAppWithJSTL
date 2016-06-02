@@ -14,7 +14,17 @@
     </test>
     <test name="test4">
         <classes>
-            <class name="mytranslator.seleniumtests.logintestsele.LoginTest"/>
+            <class name="mytranslator.seleniumtests.logintest.LoginTest"/>
+        </classes>
+    </test>
+    <test name="test5">
+        <classes>
+            <class name="mytranslator.seleniumtests.translatortest.TranslatorTest"/>
+        </classes>
+    </test>
+    <test name="testUserAdd">
+        <classes>
+            <class name="mytranslator.seleniumtests.usermgttest.UserAddTest"/>
         </classes>
     </test>
 </suite>	
