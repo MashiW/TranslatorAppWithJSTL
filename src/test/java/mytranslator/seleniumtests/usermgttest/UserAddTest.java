@@ -2,8 +2,10 @@ package mytranslator.seleniumtests.usermgttest;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -36,15 +38,15 @@ public class UserAddTest {
 
         return new Object[][]{
                 {
-                        "Username", "fname", "lstname", "Dob",
+                        "Username", "fname", "lstname", "2000-01-03",
                         "PassWd123", "PassWd123", "Administrator",
-                        "Sri Lanka", "Colombo", "1236547896", "hhhuj@gmail.com"}
+                        "Sri Lanka", "Colombo", "1236547896", "hhhuj@gmail.com", "OK"}
         };
     }
 
     @Test(dataProvider = "addUser")
     public void getAddUser(String unm, String fnm, String lnm, String dob, String pw, String cfpw,
-                           String group, String country, String city, String tele, String email) {
+                           String group, String country, String city, String tele, String email, String expected) {
 
         driver.findElement(By.id("usermgtTab")).click(); // click on user management tab
         driver.findElement(By.id("userAddLink")).click(); // click on add user link
@@ -70,6 +72,20 @@ public class UserAddTest {
         driver.findElement(By.id("txtemail")).sendKeys(email); // type email
 
         driver.findElement(By.id("btnAddusr")).click(); // click add user button
+
+        //String requiredFiled = driver.findElement(By.className("input-group-error")).getText();
+        WebElement inputs = driver.findElement(By.cssSelector("form-group.required"));
+        inputs.getText();
+      // requiredFiled.getAttribute("value");
+        String actual;
+
+        if(inputs != null ){
+            actual="OK";
+        }else{
+            actual="";
+        }
+
+        Assert.assertEquals(actual,expected);
     }
 
     @AfterMethod

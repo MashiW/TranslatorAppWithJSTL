@@ -175,7 +175,7 @@
                         </div>
                     </div>
 
-
+<label id="finalErr" class="input-group-error"></label>
                 </fieldset>
             </form>
 
