@@ -87,7 +87,8 @@ $(document).ready(function () {
                 document.getElementById("pwderr").innerHTML = "Please enter a password !";
                 return false;
             } else {
-                document.getElementById("pwderr").innerHTML = "Invalid password. Use a password atleast with  8 characters mixed with upper and lower case";
+                document.getElementById("pwderr").innerHTML = "Invalid password. Use a password atleast with" +
+                    " 8 characters mixed with upper and lower case";
                 password.value = "";
                 password.focus();
                 return false;
@@ -208,7 +209,9 @@ $(document).ready(function () {
                 }
             });
         } else {
-            alert("Please fill the relevant fields !");
+            $('#finalErr').text("Error in fields..");
+
+            //alert("Please fill the relevant fields !");
         }
     })
 

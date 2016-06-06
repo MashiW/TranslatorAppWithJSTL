@@ -38,23 +38,33 @@ public class UserAddTest {
 
         return new Object[][]{
                 {
-                        "Username", "fname", "lstname", "2000-01-03",
+                        "Username", "fname", "lstname", "1995-Aug-14",
                         "PassWd123", "PassWd123", "Administrator",
                         "Sri Lanka", "Colombo", "1236547896", "hhhuj@gmail.com", "OK"}
         };
     }
 
     @Test(dataProvider = "addUser")
-    public void getAddUser(String unm, String fnm, String lnm, String dob, String pw, String cfpw,
+    public void getAddUser(String unm, String fnm, String lnm, String pw, String cfpw, String DOB,
                            String group, String country, String city, String tele, String email, String expected) {
 
         driver.findElement(By.id("usermgtTab")).click(); // click on user management tab
         driver.findElement(By.id("userAddLink")).click(); // click on add user link
 
+        String dobYear = "/html/body/div[2]/div[3]/table/tbody/tr/td/span[7]";
+        String dobMonth = "/html/body/div[2]/div[2]/table/tbody/tr/td/span[7]";
+        String dobDate= "/html/body/div[2]/div[1]/table/tbody/tr[4]/td[2]";
+
         driver.findElement(By.id("txtuname")).sendKeys(unm); // type username
         driver.findElement(By.id("txtfname")).sendKeys(fnm); // type firstname
         driver.findElement(By.id("txtlstnm")).sendKeys(lnm); // type last name
-        driver.findElement(By.id("date")).sendKeys(dob); // select dob
+
+        driver.findElement(By.id("date")).click();
+        driver.findElement(By.xpath(dobYear)).click();
+        driver.findElement(By.xpath(dobMonth)).click();
+        driver.findElement(By.xpath(dobDate)).click();
+        driver.findElement(By.id("date")).sendKeys(DOB);
+
         driver.findElement(By.id("txtpass")).sendKeys(pw); // type [assword
         driver.findElement(By.id("txtconfpass")).sendKeys(cfpw); // rewrite password
 
@@ -74,12 +84,12 @@ public class UserAddTest {
         driver.findElement(By.id("btnAddusr")).click(); // click add user button
 
         //String requiredFiled = driver.findElement(By.className("input-group-error")).getText();
-        WebElement inputs = driver.findElement(By.cssSelector("form-group.required"));
+        WebElement inputs = driver.findElement(By.id("finalErr"));
         inputs.getText();
       // requiredFiled.getAttribute("value");
         String actual;
 
-        if(inputs != null ){
+        if(inputs == null ){
             actual="OK";
         }else{
             actual="";

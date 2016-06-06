@@ -27,4 +27,9 @@
             <class name="mytranslator.seleniumtests.usermgttest.UserAddTest"/>
         </classes>
     </test>
+    <test name="testSearchUser">
+        <classes>
+            <class name="mytranslator.seleniumtests.usermgttest.SearchUserTest"/>
+        </classes>
+    </test>
 </suite>	

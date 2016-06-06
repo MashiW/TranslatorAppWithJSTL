@@ -34,7 +34,12 @@ public class TranslatorTest {
     public Object[][] texts(){
 
         return new Object[][]{
-                {"child", "en", "fr", "enfant"} // correct language selection
+                {"child", "en", "fr", "enfant"}, // correct language selection
+                {"", "en", "fr", ""}, // incorrect
+                {"tagfvfd", "en", "fr", "tagfvfd"},
+                {"4546342", "en", "fr", "4546342"},
+                {"enfant", "fr", "en", "child"},
+                {"child", "en", "en", "child"}
         };
     }
 
