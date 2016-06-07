@@ -19,13 +19,14 @@ import java.util.concurrent.TimeUnit;
 public class UserAddTest {
 
     private WebDriver driver;
+    String service = "http://localhost:8080/";
 
     @BeforeMethod
     public void initDriver() throws Exception {
 
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        driver.get("http://localhost:8080/");
+        driver.get(service);
 
         driver.findElement(By.id("txtlogin")).sendKeys("frank"); //username input field
         driver.findElement(By.id("txtPw")).sendKeys("Frank123"); // password input field
@@ -38,14 +39,18 @@ public class UserAddTest {
 
         return new Object[][]{
                 {
-                        "Username", "fname", "lstname", "1995-Aug-14",
+                        "Username", "fname", "lstname",
                         "PassWd123", "PassWd123", "Administrator",
-                        "Sri Lanka", "Colombo", "1236547896", "hhhuj@gmail.com", "OK"}
+                        "Sri Lanka", "Colombo", "23698521478", "hhhuj@gmail.com", "OK"},
+                {
+                        "", "fname", "lstname",
+                        "PassWd123", "PassWd123", "Administrator",
+                        "Sri Lanka", "Colombo", "23698521478", "hhhuj@gmail.com", "Error"}
         };
     }
 
     @Test(dataProvider = "addUser")
-    public void getAddUser(String unm, String fnm, String lnm, String pw, String cfpw, String DOB,
+    public void getAddUser(String unm, String fnm, String lnm, String pw, String cfpw,
                            String group, String country, String city, String tele, String email, String expected) {
 
         driver.findElement(By.id("usermgtTab")).click(); // click on user management tab
@@ -63,9 +68,9 @@ public class UserAddTest {
         driver.findElement(By.xpath(dobYear)).click();
         driver.findElement(By.xpath(dobMonth)).click();
         driver.findElement(By.xpath(dobDate)).click();
-        driver.findElement(By.id("date")).sendKeys(DOB);
 
-        driver.findElement(By.id("txtpass")).sendKeys(pw); // type [assword
+        driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
+        driver.findElement(By.id("txtpass")).sendKeys(pw); // type password
         driver.findElement(By.id("txtconfpass")).sendKeys(cfpw); // rewrite password
 
         Select group1 = new Select(driver.findElement(By.id("slctgrp"))); // click group list
@@ -83,16 +88,14 @@ public class UserAddTest {
 
         driver.findElement(By.id("btnAddusr")).click(); // click add user button
 
-        //String requiredFiled = driver.findElement(By.className("input-group-error")).getText();
         WebElement inputs = driver.findElement(By.id("finalErr"));
-        inputs.getText();
-      // requiredFiled.getAttribute("value");
+
         String actual;
 
-        if(inputs == null ){
+        if(inputs.getText().isEmpty() ){
             actual="OK";
         }else{
-            actual="";
+            actual="Error";
         }
 
         Assert.assertEquals(actual,expected);
